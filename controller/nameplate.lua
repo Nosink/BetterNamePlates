@@ -8,8 +8,7 @@ local function onNamePlateData(_, healthBar, classFilename)
     if settings.IsClassColorEnabled() then
         color = data.classColor[classFilename]
     end
-    ns:TriggerEvent(name .. "_NAMEPLATE_UPDATE", healthBar, color)
+    ns:TriggerEvent(name .. "_NAMEPLATE_UPDATE_REQUEST", healthBar, color)
 end
 
 ns:RegisterEvent(name .. "_NAMEPLATE_DATA", onNamePlateData)
-ns:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateData)
