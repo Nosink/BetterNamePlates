@@ -1,0 +1,45 @@
+
+## Title: BetterNamePlates
+
+## Notes-enUS: 
+## Notes-esES: 
+
+## Author: Nosink Ð
+## Version: 0.0
+## SavedVariables: BetterNamePlatesDB
+
+# Module: Localization
+localization/localization.lua
+localization/enUS.lua
+localization/esES-esMX.lua
+# --------------------
+
+# Module: Events
+events/bus.lua
+# --------------------
+
+# Module: DataBase
+database/data.lua
+database/database.lua
+# --------------------
+
+# Module: Configuration
+configuration/builder.lua
+configuration/frames/checkbox.lua
+configuration/frames/editbox.lua
+configuration/frames/slider.lua
+# --------------------
+configuration/panel.lua
+configuration/commands.lua
+configuration/settings.lua
+# --------------------
+
+# Addon - Core
+addon.lua
+data.lua
+utils.lua
+
+# MVC Player Money 
+model/nameplate.lua
+view/nameplate.lua
+controller/nameplate.lua
