@@ -35,11 +35,11 @@ configuration/settings.lua
 # --------------------
 
 # Addon - Core
-addon.lua
-data.lua
 utils.lua
+data.lua
+addon.lua
 
-# MVC Player Money 
+# C NamePlates 
 model/nameplate.lua
 view/nameplate.lua
 controller/nameplate.lua

@@ -10,7 +10,7 @@ local function openSettings()
     end
 end
 
-SlashCmdList.BETTERGOLDCounter = function(msg)
+SlashCmdList.BETTERNAMEPLATES = function(msg)
     msg = (msg or ""):match("^%s*(.-)%s*$"):lower()
 
     if msg == "" or msg == "config" or msg == "options" or msg == "settings" then
