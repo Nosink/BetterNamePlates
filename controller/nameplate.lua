@@ -6,6 +6,9 @@ local settings = ns.settings
 local function onNamePlateData(_, healthBar, classFilename)
     local color = {r = 0, g = 0, b = 1}
     if settings.IsClassColorEnabled() then
+        if not settings.IsShamanColorEnabled() and classFilename == "SHAMAN" then
+            classFilename = "PALADIN"
+        end
         color = data.classColor[classFilename]
     end
     ns:TriggerEvent(name .. "_NAMEPLATE_UPDATE_REQUEST", healthBar, color)

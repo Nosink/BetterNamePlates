@@ -6,3 +6,7 @@ ns.settings = ns.settings or {}
 function ns.settings.IsClassColorEnabled()
     return ns.database.classColor
 end
+
+function ns.settings.IsShamanColorEnabled()
+    return ns.database.shamanColor
+end

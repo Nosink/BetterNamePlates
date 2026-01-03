@@ -1,7 +1,8 @@
 local _, ns = ...
 
 ns.defaults = {
-    classColor = true
+    classColor = true,
+    shamanColor = false
 }
 
 ns.defaultsPC = {

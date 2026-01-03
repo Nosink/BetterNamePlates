@@ -17,6 +17,14 @@ local function onSettingsChanged(_, key)
         for _, namePlate in ipairs(namePlates) do
             onNamePlateAdded(namePlate, namePlate.namePlateUnitToken)
         end
+    elseif (key == "shamanColor") then
+        local namePlates = C_NamePlate.GetNamePlates()
+        for _, namePlate in ipairs(namePlates) do
+            local classFilename = UnitClassBase(namePlate.namePlateUnitToken)
+            if classFilename == "SHAMAN" then
+                onNamePlateAdded(namePlate, namePlate.namePlateUnitToken)
+            end
+        end
     end
 end
 

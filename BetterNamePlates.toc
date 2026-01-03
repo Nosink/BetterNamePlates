@@ -39,7 +39,7 @@ utils.lua
 data.lua
 addon.lua
 
-# C NamePlates 
+# MVC NamePlates Color 
 model/nameplate.lua
 view/nameplate.lua
 controller/nameplate.lua

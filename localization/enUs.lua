@@ -5,3 +5,4 @@ L["LKEY_OPTIONS_TITLE"] = name .. " " .. "Options"
 
 L["LKEY_OPTIONS_NAMEPLATES_TITLE"] = "Nameplates"
 L["LKEY_OPTIONS_CLASS_COLOR_CB"] = "Class Color Nameplates"
+L["LKEY_OPTIONS_SHAMAN_COLOR_CB"] = "Use Shaman Color for Shamans"
