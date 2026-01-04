@@ -24,5 +24,17 @@ local function onNamePlateHealthLabelRequest(_, namePlateUnitToken)
     ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_LABEL_READY", namePlateUnitToken)
 end
 
+local function onNamePlateRemoved(_)
+    for i=1, 40 do
+        local namePlateUnitToken = "nameplate" .. tostring(i)
+        local unit = ns.units[namePlateUnitToken]
+        local label = unit and unit.label
+        if label then
+            label:SetText("")
+        end
+    end
+end
+
 ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_UPDATE", onNamePlateHealthUpdate)
 ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)
+ns:HookSecureFunc(NamePlateBaseMixin, "OnRemove", onNamePlateRemoved)

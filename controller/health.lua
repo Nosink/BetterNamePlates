@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-field
+
 local name, ns = ...
 
 local settings = ns.settings
