@@ -27,10 +27,10 @@ end
 
 local function onSettingsChanged(_, key)
     if (key == "displayHealth") then
-        print("Health display setting changed, updating nameplates...")
         local namePlates = C_NamePlate.GetNamePlates()
         for _, namePlate in ipairs(namePlates) do
-            onNamePlateData(nil, namePlate.UnitFrame.healthBar, namePlate.namePlateUnitToken)
+            local healthBar = namePlate.UnitFrame.healthBar
+            onNamePlateData(nil, healthBar, namePlate.namePlateUnitToken)
             onNamePlateHealthLabelReady(nil, namePlate.namePlateUnitToken)
         end
     end

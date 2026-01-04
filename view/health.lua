@@ -19,7 +19,7 @@ local function onNamePlateHealthLabelRequest(_, namePlateUnitToken)
         label:SetFont(tostring(fontName), 10, "OUTLINE")
         label:SetTextColor(1, 1, 1, 1)
         label:SetText("")
-        unit.label = label
+        ns.units[namePlateUnitToken].label = label
     end
     ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_LABEL_READY", namePlateUnitToken)
 end
