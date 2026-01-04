@@ -2,6 +2,8 @@ local name, ns = ...
 
 local function onNamePlateAdded(driverFrame, namePlateUnitToken)
     local healthBar = driverFrame.UnitFrame.healthBar
+    if not healthBar then return end
+
     ns:TriggerEvent(name .. "_NAMEPLATE_DATA", healthBar, namePlateUnitToken)
 end
 
