@@ -1,6 +1,6 @@
 local name, ns = ...
 
-function ns.builder.CreateEditBox(self, text, key)
+function ns.builder.CreateEditBox(self, text, key, width)
     local label = self.optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
     label:SetPoint("TOPLEFT", self.anchor, "BOTTOMLEFT", 0, -4)
     local font, _, flags = label:GetFont()
@@ -12,7 +12,7 @@ function ns.builder.CreateEditBox(self, text, key)
     editBox:SetPoint("LEFT", label, "RIGHT", 10, 0)
     editBox:SetAutoFocus(false)
     editBox:SetJustifyH("CENTER")
-    editBox:SetSize(45, 22)
+    editBox:SetSize(width or 45, 22)
     editBox:SetText(tostring(ns.database[key]) or "")
 
     editBox:SetScript("OnTextChanged", function(self, userInput)

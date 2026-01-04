@@ -10,3 +10,12 @@ end
 function ns.settings.IsShamanColorEnabled()
     return ns.database.shamanColor
 end
+
+-- Health
+function ns.settings.IsHealthDisplayEnabled()
+    return ns.database.displayHealth
+end
+
+function ns.settings.GetHealthFormat()
+    return ns.database.healthFormat
+end

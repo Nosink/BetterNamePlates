@@ -28,6 +28,7 @@ configuration/builder.lua
 configuration/frames/checkbox.lua
 configuration/frames/editbox.lua
 configuration/frames/slider.lua
+configuration/frames/text.lua
 # --------------------
 configuration/panel.lua
 configuration/commands.lua
@@ -43,3 +44,8 @@ addon.lua
 model/nameplate.lua
 view/nameplate.lua
 controller/nameplate.lua
+
+# MVC Health Label
+model/health.lua
+view/health.lua
+controller/health.lua
