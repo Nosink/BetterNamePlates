@@ -11,9 +11,8 @@ local function onNamePlateData(_, namePlateUnitToken)
     local unitType = guid and guid:match("^(%a+)-") or ""
     if unitType ~= "Player" then return end
 
-    local unit = ns.units[namePlateUnitToken]
     local class = settings.GetUnitClassName(namePlateUnitToken)
-    unit.color = data.classColor[class]
+    ns.units[namePlateUnitToken].color = data.classColor[class]
 
     ns:TriggerEvent(name .. "_NAMEPLATE_COLOR_UPDATE_REQUEST", namePlateUnitToken)
 end

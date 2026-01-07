@@ -110,7 +110,7 @@ end
 
 function ns:TriggerEvent(eventName, ...)
     if type(eventName) ~= "string" then return end
-
+    print("Triggering event: " .. eventName)
     dispatch(frame, eventName, ...)
 end
 

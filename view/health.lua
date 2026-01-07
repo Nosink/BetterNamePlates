@@ -1,18 +1,16 @@
 local name, ns = ...
 
 local function onNamePlateHealthLabelUpdateRequest(_, namePlateUnitToken)
-    local unit = ns.units[namePlateUnitToken]
-    if not unit or not unit.label then return end
+    if not ns.units[namePlateUnitToken] or not ns.units[namePlateUnitToken].label then return end
 
-    unit.label:SetText(unit.text)
+    ns.units[namePlateUnitToken].label:SetText(ns.units[namePlateUnitToken].text)
 end
 
 local function onNamePlateHealthLabelRequest(_, namePlateUnitToken)
-    local unit = ns.units[namePlateUnitToken]
-    if not unit or unit.label then return end
+    if not ns.units[namePlateUnitToken] or ns.units[namePlateUnitToken].label then return end
 
-    local label = unit.frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    label:SetPoint("LEFT", unit.frame, "LEFT", 2, 0)
+    local label = ns.units[namePlateUnitToken].frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    label:SetPoint("LEFT", ns.units[namePlateUnitToken].frame, "LEFT", 2, 0)
     local fontName = label:GetFont()
     label:SetFont(tostring(fontName), 10, "OUTLINE")
     label:SetTextColor(1, 1, 1, 1)
