@@ -3,7 +3,7 @@ local name, ns = ...
 local data = ns.data
 local settings = ns.settings
 
-local function onNamePlateData(_, namePlateUnitToken)
+local function onNamePlateCached(_, _, namePlateUnitToken)
     if settings.IsClassColoredEnabledUsingCVars() then return end
     if not settings.IsClassColorEnabled() then return end
 
@@ -14,7 +14,7 @@ local function onNamePlateData(_, namePlateUnitToken)
     local class = settings.GetUnitClassName(namePlateUnitToken)
     ns.units[namePlateUnitToken].color = data.classColor[class]
 
-    ns:TriggerEvent(name .. "_NAMEPLATE_COLOR_UPDATE_REQUEST", namePlateUnitToken)
+    ns:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", namePlateUnitToken)
 end
 
-ns:RegisterEvent(name .. "_NAMEPLATE_DATA", onNamePlateData)
+ns:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)

@@ -6,10 +6,13 @@ local function onNamePlateAdded(driverFrame, namePlateUnitToken)
     local unitFramme = driverFrame.UnitFrame
     if not unitFramme then return end
 
-    ns.units[namePlateUnitToken].frame = unitFramme
-    ns.units[namePlateUnitToken].healthBar = unitFramme.healthBar
+    if not ns.units[namePlateUnitToken] then
+        ns.units[namePlateUnitToken] = {}
+        ns.units[namePlateUnitToken].frame = unitFramme
+        ns.units[namePlateUnitToken].healthBar = unitFramme.healthBar
+    end
 
-    ns:TriggerEvent(name .. "_NAMEPLATE_DATA", unitFramme, namePlateUnitToken)
+    ns:TriggerEvent(name .. "_NAMEPLATE_CACHED", unitFramme, namePlateUnitToken)
 end
 
 local function toggleShowClassColorInNameplateCVar()
