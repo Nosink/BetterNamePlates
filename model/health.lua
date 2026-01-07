@@ -1,12 +1,15 @@
 local name, ns = ...
 
 local function onNamePlateData(_, _, namePlateUnitToken)
-    ns.units[namePlateUnitToken].text = ""
+    local unit = ns.units[namePlateUnitToken]
+    if not unit then return end
 
-    if not ns.units[namePlateUnitToken].label then
+    unit.text = ""
+
+    if not unit.label then
         ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_LABEL_REQUEST", namePlateUnitToken)
     end
-    if not ns.units[namePlateUnitToken].ticker then
+    if not unit.ticker then
         ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_TICKER_REQUEST", namePlateUnitToken)
     end
 end

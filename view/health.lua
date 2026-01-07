@@ -1,6 +1,6 @@
 local name, ns = ...
 
-local function onNamePlateHealthUpdate(_, namePlateUnitToken)
+local function onNamePlateHealthLabelUpdateRequest(_, namePlateUnitToken)
     local unit = ns.units[namePlateUnitToken]
     if not unit or not unit.label then return end
 
@@ -19,5 +19,5 @@ local function onNamePlateHealthLabelRequest(_, namePlateUnitToken)
     label:SetText("")
 end
 
-ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_UPDATE", onNamePlateHealthUpdate)
+ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)
 ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)
