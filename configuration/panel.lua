@@ -17,7 +17,9 @@ local shamanColorCB = builder:CreateCheckBox(L["LKEY_OPTIONS_SHAMAN_COLOR_CB"], 
 
 builder:CreateSection(L["LKEY_OPTIONS_HEALTH_LABEL_TITLE"])
 local displayHealthCB = builder:CreateCheckBox(L["LKEY_OPTIONS_DISPLAY_HEALTH_CB"], "displayHealth")
-builder:CreateText(L["LKEY_OPTIONS_HEALTH_FORMAT_DESC"])
+builder:CreateText("")
+builder:CreateText(L["LKEY_OPTIONS_HEALTH_FORMAT_DESC1"])
+builder:CreateText("")
 local healthFormatEB = builder:CreateEditBox(L["LKEY_OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", 300)
 
 -- Register

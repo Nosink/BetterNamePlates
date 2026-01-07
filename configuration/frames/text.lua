@@ -6,6 +6,7 @@ function ns.builder.CreateText(self, text)
     local font, _, flags = label:GetFont()
     label:SetFont(tostring(font), 12, flags)
     label:SetTextColor(1, 1, 1, 1)
+    label:SetJustifyH("LEFT")
     label:SetText(" " .. text)
 
     self.anchor = label

@@ -1,43 +1,33 @@
----@diagnostic disable: undefined-field
-
 local name, ns = ...
 
 local settings = ns.settings
 
-local function onNamePlateData(_, healthBar, namePlateUnitToken)
-    ns.units[namePlateUnitToken] = ns.units[namePlateUnitToken] or { healthBar = healthBar }
-    if not ns.units[namePlateUnitToken].label then
-        ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_LABEL_REQUEST", namePlateUnitToken)
-    end
-end
-
-local function onNamePlateHealthLabelReady(_, namePlateUnitToken)
+local function onNamePlateHealthTickerRequest(_, namePlateUnitToken)
     local unit = ns.units[namePlateUnitToken]
+    ns.units[namePlateUnitToken].ticker =  C_Timer.NewTicker(0.1, function()
 
-    if unit.ticker then
-        unit.ticker:Cancel()
-        unit.ticker = nil
-    end
+        unit.text = settings.GetHealthFormat()
 
-    if settings.IsHealthDisplayEnabled() then
-        ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_TICKER_REQUEST", namePlateUnitToken)
-    else
-        unit.text = ""
-        ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_UPDATE", namePlateUnitToken)
-    end
-end
-
-local function onSettingsChanged(_, key)
-    if (key == "displayHealth") then
-        local namePlates = C_NamePlate.GetNamePlates()
-        for _, namePlate in ipairs(namePlates) do
-            local healthBar = namePlate.UnitFrame.healthBar
-            onNamePlateData(nil, healthBar, namePlate.namePlateUnitToken)
-            onNamePlateHealthLabelReady(nil, namePlate.namePlateUnitToken)
+        local unitInfo = UnitGUID(namePlateUnitToken)
+        if not unitInfo then
+            unit.text = ""
+            ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_UPDATE", namePlateUnitToken)
+            return
         end
-    end
+        local health = UnitHealth(namePlateUnitToken)
+        local maxHealth = UnitHealthMax(namePlateUnitToken)
+        local healthPercent = math.floor((health / maxHealth) * 100)
+        local firstDecimal = math.floor(((health / maxHealth) * 1000) % 10)
+        local secondDecimal = math.floor(((health / maxHealth) * 10000) % 10)
+
+        unit.text = unit.text:gsub("%%PERCENT%%", tostring(healthPercent) .. "%%")
+        unit.text = unit.text:gsub("%%PERCENT1%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. "%%")
+        unit.text = unit.text:gsub("%%PERCENT2%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. tostring(secondDecimal) .. "%%")
+        unit.text = unit.text:gsub("%%CURRENT%%", tostring(health))
+        unit.text = unit.text:gsub("%%MAX%%", tostring(maxHealth))
+
+        ns:TriggerEvent(name .. "_NAMEPLATE_HEALTH_UPDATE", namePlateUnitToken)
+    end)
 end
 
-ns:RegisterEvent(name .. "_NAMEPLATE_DATA", onNamePlateData)
-ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_LABEL_READY", onNamePlateHealthLabelReady)
-ns:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
+ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_TICKER_REQUEST", onNamePlateHealthTickerRequest)

@@ -3,25 +3,19 @@ local name, ns = ...
 local data = ns.data
 local settings = ns.settings
 
-local function useCVar()
-    SetCVar("ShowClassColorInNameplate", 1)
-end
+local function onNamePlateData(_, namePlateUnitToken)
+    if settings.IsClassColoredEnabledUsingCVars() then return end
+    if not settings.IsClassColorEnabled() then return end
 
-local function onNamePlateData(_, healthBar, namePlateUnitToken)
     local guid = UnitGUID(namePlateUnitToken)
     local unitType = guid and guid:match("^(%a+)-") or ""
     if unitType ~= "Player" then return end
 
-    local color = {r = 0, g = 0, b = 1}
-    local classFilename = UnitClassBase(namePlateUnitToken)
+    local unit = ns.units[namePlateUnitToken]
+    local class = settings.GetUnitClassName(namePlateUnitToken)
+    unit.color = data.classColor[class]
 
-    if settings.IsClassColorEnabled() then
-        if not settings.IsShamanColorEnabled() and classFilename == "SHAMAN" then
-            classFilename = "PALADIN"
-        end
-        color = data.classColor[classFilename]
-    end
-    ns:TriggerEvent(name .. "_NAMEPLATE_UPDATE_REQUEST", healthBar, color)
+    ns:TriggerEvent(name .. "_NAMEPLATE_COLOR_UPDATE_REQUEST", namePlateUnitToken)
 end
 
 ns:RegisterEvent(name .. "_NAMEPLATE_DATA", onNamePlateData)

@@ -1,10 +1,20 @@
 local name, ns = ...
 
-local function onNamePlateAdded(driverFrame, namePlateUnitToken)
-    local healthBar = driverFrame.UnitFrame.healthBar
-    if not healthBar then return end
+local settings = ns.settings
 
-    ns:TriggerEvent(name .. "_NAMEPLATE_DATA", healthBar, namePlateUnitToken)
+local function onNamePlateAdded(driverFrame, namePlateUnitToken)
+    local unitFramme = driverFrame.UnitFrame
+    if not unitFramme then return end
+
+    ns.units[namePlateUnitToken].frame = unitFramme
+    ns.units[namePlateUnitToken].healthBar = unitFramme.healthBar
+
+    ns:TriggerEvent(name .. "_NAMEPLATE_DATA", unitFramme, namePlateUnitToken)
+end
+
+local function toggleShowClassColorInNameplateCVar()
+    local state = settings.IsUsingCVarsEnabled() and "1" or "0"
+    SetCVar("ShowClassColorInNameplate", state)
 end
 
 local function onSettingsChanged(_, key)
@@ -21,6 +31,8 @@ local function onSettingsChanged(_, key)
                 onNamePlateAdded(namePlate, namePlate.namePlateUnitToken)
             end
         end
+    elseif (key == "cVarClassColor") then   
+        toggleShowClassColorInNameplateCVar()
     end
 end
 
