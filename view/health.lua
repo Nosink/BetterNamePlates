@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local data = ns.data
+
 local function onNamePlateHealthUpdate(_, namePlateUnitToken)
     local unit = ns.units[namePlateUnitToken]
     if not unit then return end
@@ -25,16 +27,19 @@ local function onNamePlateHealthLabelRequest(_, namePlateUnitToken)
 end
 
 local function onNamePlateRemoved(_)
-    for i=1, 40 do
+    for i=data.minNameplates, data.maxNameplates do
         local namePlateUnitToken = "nameplate" .. tostring(i)
+
         local unit = ns.units[namePlateUnitToken]
-        local label = unit and unit.label
-        if label then
-            label:SetText("")
-        end
+        if not unit then break end
+
+        local label = unit.label
+        if not label then break end
+
+        label:SetText("")
     end
 end
 
 ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_UPDATE", onNamePlateHealthUpdate)
 ns:RegisterEvent(name .. "_NAMEPLATE_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)
-ns:HookSecureFunc(NamePlateBaseMixin, "OnRemove", onNamePlateRemoved)
+-- ns:HookSecureFunc(NamePlateBaseMixin, "OnRemove", onNamePlateRemoved)

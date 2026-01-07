@@ -3,6 +3,10 @@ local name, ns = ...
 local data = ns.data
 local settings = ns.settings
 
+local function useCVar()
+    SetCVar("ShowClassColorInNameplate", 1)
+end
+
 local function onNamePlateData(_, healthBar, namePlateUnitToken)
     local guid = UnitGUID(namePlateUnitToken)
     local unitType = guid and guid:match("^(%a+)-") or ""
