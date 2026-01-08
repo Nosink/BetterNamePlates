@@ -1,24 +1,28 @@
 local name, ns = ...
 
-local function onNamePlateHealthLabelUpdateRequest(_, namePlateUnitToken)
-    local unit = ns.units[namePlateUnitToken]
-    if not unit or not unit.label then return end
+local settings = ns.settings
 
-    unit.label:SetText(unit.text)
+local function onNamePlateHealthLabelUpdateRequest(_, unit)
+    if not unit or not unit.healthBar.label then return end
+
+    if settings.IsHealthDisplayEnabled() then
+        unit.healthBar.label:SetText(unit.text)
+    else
+        unit.healthBar.label:SetText("")
+    end
 end
 
-local function onNamePlateHealthLabelRequest(_, namePlateUnitToken)
-    local unit = ns.units[namePlateUnitToken]
-    if not unit or unit.label then return end
+local function onNamePlateHealthLabelRequest(_, unit)
+    if not unit or unit.healthBar.label or not unit.healthBar then return end
 
-    local label = unit.healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    label:SetPoint("LEFT", unit.healthBar, "LEFT", 2, 0)
-    local fontName = label:GetFont()
-    label:SetFont(tostring(fontName), 10, "OUTLINE")
-    label:SetTextColor(1, 1, 1, 1)
-    label:SetText("")
+    unit.healthBar.label = unit.healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    unit.healthBar.label:SetPoint("LEFT", unit.healthBar, "LEFT", 2, 0)
+    local fontName = unit.healthBar.label:GetFont()
+    unit.healthBar.label:SetFont(tostring(fontName), 10, "OUTLINE")
+    unit.healthBar.label:SetTextColor(1, 1, 1, 1)
+    unit.healthBar.label:SetText("")
+    unit.healthBar.label:Show()
 
-    unit.label = label
 end
 
 ns:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)

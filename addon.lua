@@ -1,7 +1,7 @@
 local name, ns = ...
 
 local function initializeVars()
-    ns.units = {}
+    ns.activePlates = {}
 end
 
 local function onAddonLoaded(_, addOnName)

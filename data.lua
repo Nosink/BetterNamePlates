@@ -3,7 +3,7 @@ local _, ns = ...
 ns.data = ns.data or {}
 
 ns.data.minNameplates = 1
-ns.data.maxNameplates = 200
+ns.data.maxNameplates = 40
 
 ns.data.classColor =  {
     ["DRUID"]   = {r = 1.00, g = 0.49, b = 0.04},

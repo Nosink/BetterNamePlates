@@ -3,10 +3,10 @@ local _, ns = ...
 ns.defaults = {
     classColor = true,
     cVarClassColor = false,
-    shamanColor = false,
+    shamanColor = true,
 
     displayHealth = true,
-    healthFormat = "(%PERCENT%)",
+    healthFormat = "%PERCENT1%",
 }
 
 ns.defaultsPC = {

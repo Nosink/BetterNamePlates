@@ -2,31 +2,30 @@ local name, ns = ...
 
 local settings = ns.settings
 
-local function onNamePlateHealthTickerRequest(_, namePlateUnitToken)
-    local unit = ns.units[namePlateUnitToken]
+local function onNamePlateHealthTickerRequest(_, unit)
     if not unit then return end
 
     unit.CreateTicker = function (self)
         self.ticker = C_Timer.NewTicker(0.1, function()
-            local unitInfo = UnitGUID(namePlateUnitToken)
-            if not unitInfo then self:ClearTicker() return end
+            local guid = UnitGUID(self.token)
+            if not guid then self:ClearTicker() return end
 
-            unit.text = settings.GetHealthFormat()
+            self.text = settings.GetHealthFormat()
 
-            local health = UnitHealth(namePlateUnitToken)
-            local maxHealth = UnitHealthMax(namePlateUnitToken)
+            local health = UnitHealth(self.token)
+            local maxHealth = UnitHealthMax(self.token)
             local healthPercent = math.floor((health / maxHealth) * 100)
             local firstDecimal = math.floor(((health / maxHealth) * 1000) % 10)
             local secondDecimal = math.floor(((health / maxHealth) * 10000) % 10)
 
-            unit.text = unit.text:gsub("%%PERCENT%%", tostring(healthPercent) .. "%%")
-            unit.text = unit.text:gsub("%%PERCENT1%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. "%%")
-            unit.text = unit.text:gsub("%%PERCENT2%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. tostring(secondDecimal) .. "%%")
+            self.text = self.text:gsub("%%PERCENT%%", tostring(healthPercent) .. "%%")
+            self.text = self.text:gsub("%%PERCENT1%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. "%%")
+            self.text = self.text:gsub("%%PERCENT2%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. tostring(secondDecimal) .. "%%")
 
-            unit.text = unit.text:gsub("%%CURRENT%%", tostring(health))
-            unit.text = unit.text:gsub("%%MAX%%", tostring(maxHealth))
+            self.text = self.text:gsub("%%CURRENT%%", tostring(health))
+            self.text = self.text:gsub("%%MAX%%", tostring(maxHealth))
 
-            ns:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", namePlateUnitToken)
+            ns:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", unit)
         end)
     end
 

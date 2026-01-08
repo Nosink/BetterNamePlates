@@ -12,7 +12,11 @@ function ns.settings.IsUsingCVarsEnabled()
 end
 
 function ns.settings.IsClassColoredEnabledUsingCVars()
-    return ns.database.customHealthColorBars
+    return ns.settings.customHealthColorBars
+end
+
+function ns.settings.IsShamanColorEnabled()
+    return ns.database.shamanColor
 end
 
 function ns.settings.GetUnitClassName(unit)
@@ -29,7 +33,8 @@ function ns.settings.IsHealthDisplayEnabled()
     return ns.database.displayHealth
 end
 
-function ns.settings.GetHealthFormat()
+function ns.settings.GetHealthFormat
+()
     return ns.database.healthFormat
 end
 
