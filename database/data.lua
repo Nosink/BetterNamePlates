@@ -7,6 +7,8 @@ ns.defaults = {
 
     displayHealth = true,
     healthFormat = "%PERCENT1%",
+
+    refreshRate = 0.2,
 }
 
 ns.defaultsPC = {

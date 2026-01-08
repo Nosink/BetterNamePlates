@@ -22,6 +22,8 @@ builder:CreateText(L["LKEY_OPTIONS_HEALTH_FORMAT_DESC1"])
 builder:CreateText("")
 local healthFormatEB = builder:CreateEditBox(L["LKEY_OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", 300)
 
+local healthRefreshRateSL = builder:CreateSlider(L["LKEY_OPTIONS_HEALTH_REFRESH_RATE_SL"], "refreshRate", 0.1, 1.0, 0.1)
+
 -- Register
 builder:Register()
 
@@ -31,6 +33,7 @@ local function onShow()
     shamanColorCB:FetchFromDB()
     displayHealthCB:FetchFromDB()
     healthFormatEB:FetchFromDB()
+    healthRefreshRateSL:FetchFromDB()
 end
 
 ns:HookScript(builder.optionsPanel, "OnShow", onShow)

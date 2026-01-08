@@ -13,5 +13,6 @@ if ns.locale == "esES" or ns.locale == "esMX" then
     L["LKEY_OPTIONS_DISPLAY_HEALTH_CB"] = "Mostrar Salud en la Placa"
     L["LKEY_OPTIONS_HEALTH_FORMAT_DESC"] = "%PERCENT% - Porcentaje de Salud, %CURRENT% - Valor de Salud, %MAX% - Salud Máxima"
     L["LKEY_OPTIONS_HEALTH_FORMAT_EB"] = "Formato"
+    L["LKEY_OPTIONS_HEALTH_REFRESH_RATE_SL"] = "Frecuencia de Actualización de Salud (Segundos)"
 
 end

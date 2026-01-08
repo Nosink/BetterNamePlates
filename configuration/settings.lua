@@ -2,6 +2,8 @@ local name, ns = ...
 
 ns.settings = ns.settings or {}
 
+local defaultRefreshRate = 0.2
+
 -- Class Color
 function ns.settings.IsClassColorEnabled()
     return ns.database.classColor
@@ -33,9 +35,12 @@ function ns.settings.IsHealthDisplayEnabled()
     return ns.database.displayHealth
 end
 
-function ns.settings.GetHealthFormat
-()
+function ns.settings.GetHealthFormat()
     return ns.database.healthFormat
+end
+
+function ns.settings.GetRefreshRate()
+    return ns.database.refreshRate or defaultRefreshRate
 end
 
 local function onLoadVariables()

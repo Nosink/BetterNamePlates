@@ -6,7 +6,7 @@ local function onNamePlateHealthTickerRequest(_, unit)
     if not unit then return end
 
     unit.CreateTicker = function (self)
-        self.ticker = C_Timer.NewTicker(0.1, function()
+        self.ticker = C_Timer.NewTicker(settings.GetRefreshRate(), function()
             local guid = UnitGUID(self.token)
             if not guid then self:ClearTicker() return end
 

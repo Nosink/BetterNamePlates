@@ -55,8 +55,6 @@ local function onSettingsChanged(_, key)
         for _, namePlate in ipairs(namePlates) do
             onNamePlateAdded(namePlate, namePlate.namePlateUnitToken)
         end
-    elseif (key == "displayHealth") then
-
     elseif (key == "cVarClassColor") then
         toggleShowClassColorInNameplateCVar()
     end
