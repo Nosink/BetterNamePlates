@@ -49,3 +49,6 @@ controller/nameplate.lua
 model/health.lua
 view/health.lua
 controller/health.lua
+
+# MVC LongDistance Nameplates
+model/distantNameplate.lua
