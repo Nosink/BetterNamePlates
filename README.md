@@ -1,6 +1,6 @@
-# BetterNamePlates
+# BetterNameplates
 
-Lightweight Classic Era addon that give some extras to the default NamePlates, allow class color frames.
+Lightweight Classic Era addon that give some extras to the default Nameplates, allow class color frames and exrta text label.
 
 ## Usage
 - Open options: use /betternameplates or /bnp, or via Interface -> AddOns.

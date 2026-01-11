@@ -17,9 +17,9 @@ local function onNamePlateAdded(driverFrame, namePlateUnitToken)
 end
 
 local function onNamePlateRemoved(_)
-    local ActiveNamePlates = C_NamePlate.GetNamePlates()
+    local ActiveNameplates = C_NamePlate.GetNamePlates()
     local removedPlaes = ns.activePlates
-    for _, activePlate in pairs(ActiveNamePlates) do
+    for _, activePlate in pairs(ActiveNameplates) do
         removedPlaes[activePlate.namePlateUnitToken] = nil
     end
     for namePlateUnitToken, _ in pairs(removedPlaes) do

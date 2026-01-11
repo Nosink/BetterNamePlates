@@ -1,12 +1,12 @@
 
-## Title: BetterNamePlates
+## Title: BetterNameplates
 
 ## Notes-enUS: 
 ## Notes-esES: 
 
 ## Author: Nosink Ð
 ## Version: 0.0
-## SavedVariables: BetterNamePlatesDB
+## SavedVariables: BetterNameplatesDB
 
 # Module: Localization
 localization/localization.lua
@@ -40,7 +40,7 @@ utils.lua
 data.lua
 addon.lua
 
-# MVC NamePlates Color 
+# MVC Nameplates Color 
 model/nameplate.lua
 view/nameplate.lua
 controller/nameplate.lua
