@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 14/01/2026
+Fixed installation processs
+Added interface support for classic
+
+---
+
 ## [1.1.0] - 14/01/2026
 Work for TBC
 
