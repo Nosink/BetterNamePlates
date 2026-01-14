@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.0] - 14/01/2026
+Work for TBC
+
+---
+
 ## [1.0.0] - 11/01/2026
 Initial release of Better Nameplates.
 

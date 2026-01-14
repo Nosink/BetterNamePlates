@@ -16,19 +16,14 @@ local function onNamePlateAdded(driverFrame, namePlateUnitToken)
     ns:TriggerEvent(name .. "_NAMEPLATE_CACHED", unit)
 end
 
-local function onNamePlateRemoved(_)
-    local ActiveNameplates = C_NamePlate.GetNamePlates()
-    local removedPlaes = ns.activePlates
-    for _, activePlate in pairs(ActiveNameplates) do
-        removedPlaes[activePlate.namePlateUnitToken] = nil
-    end
-    for namePlateUnitToken, _ in pairs(removedPlaes) do
-        local unit = ns.activePlates[namePlateUnitToken]
-        if unit.RestoreColor then unit:RestoreColor() end
-        unit.healthBar.label:SetText("")
-        unit:ClearTicker()
-        ns.activePlates[namePlateUnitToken] = nil
-    end
+local function onNamePlateRemoved(_, unitToken)
+    local unit = ns.activePlates[unitToken]
+    if not unit then return end
+
+    if unit.RestoreColor then unit:RestoreColor() end
+    unit.healthBar.label:SetText("")
+    unit:ClearTicker()
+    ns.activePlates[unitToken] = nil
 end
 
 local function toggleShowClassColorInNameplateCVar()
@@ -61,5 +56,5 @@ local function onSettingsChanged(_, key)
 end
 
 ns:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
-ns:HookSecureFunc(NamePlateBaseMixin, "OnRemoved", onNamePlateRemoved)
+ns:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
 ns:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
