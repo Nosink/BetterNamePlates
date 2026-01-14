@@ -1,11 +1,13 @@
 
 ## Title: BetterNameplates
 
-## Notes-enUS: 
-## Notes-esES: 
+## Interface: 20505, 11508
+
+## Notes-enUS: Better Nameplates is an addon that enhances the default nameplates in World of Warcraft, providing improved visibility and customization options for players.
+## Notes-esES:  Better Nameplates es un complemento que mejora las placas de nombre predeterminadas en World of Warcraft, proporcionando una mejor visibilidad y opciones de personalización para los jugadores.
 
 ## Author: Nosink Ð
-## Version: 0.0
+## Version: 1.0
 ## SavedVariables: BetterNameplatesDB
 
 # Module: Localization

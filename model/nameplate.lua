@@ -16,7 +16,7 @@ local function onNamePlateAdded(driverFrame, namePlateUnitToken)
     ns:TriggerEvent(name .. "_NAMEPLATE_CACHED", unit)
 end
 
-local function onNamePlateRemovedUnit(_, unitToken)
+local function onNamePlateRemoved(_, unitToken)
     local unit = ns.activePlates[unitToken]
     if not unit then return end
 
@@ -56,5 +56,5 @@ local function onSettingsChanged(_, key)
 end
 
 ns:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
-ns:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemovedUnit)
+ns:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
 ns:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
