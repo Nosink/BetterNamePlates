@@ -7,7 +7,7 @@
 ## Notes-esES:  Better Nameplates es un complemento que mejora las placas de nombre predeterminadas en World of Warcraft, proporcionando una mejor visibilidad y opciones de personalización para los jugadores.
 
 ## Author: Nosink Ð
-## Version: 1.0
+## Version: 1.2.0
 ## SavedVariables: BetterNameplatesDB
 
 # Module: Localization

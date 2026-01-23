@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0] - 23/01/2026
+Allow extra customization to health label
+
+### Added
+- Added edit box to Settings to input the font size for health label
+
+---
+
 ## [1.1.1] - 14/01/2026
 Fixed installation processs
 Added interface support for classic
