@@ -52,6 +52,15 @@ local function onSettingsChanged(_, key)
         end
     elseif (key == "cVarClassColor") then
         toggleShowClassColorInNameplateCVar()
+    elseif (key == "fontSize") then
+        local namePlates = C_NamePlate.GetNamePlates()
+        for _, namePlate in ipairs(namePlates) do
+            local unit = ns.activePlates[namePlate.namePlateUnitToken]
+            if unit and unit.healthBar.label then
+                local fontName = unit.healthBar.label:GetFont()
+                unit.healthBar.label:SetFont(tostring(fontName), settings.GetFontSize(), "OUTLINE")
+            end
+        end
     end
 end
 

@@ -2,6 +2,8 @@ local name, ns = ...
 
 ns.settings = ns.settings or {}
 
+local defaultFontSize = 9
+local mindefaultFontSize = 6
 local defaultRefreshRate = 0.2
 
 -- Class Color
@@ -41,6 +43,14 @@ end
 
 function ns.settings.GetRefreshRate()
     return ns.database.refreshRate or defaultRefreshRate
+end
+
+function ns.settings.GetFontSize()
+    local fontSize = tonumber(ns.database.fontSize)
+    if not fontSize then
+        fontSize = defaultFontSize
+    end
+    return max(fontSize or mindefaultFontSize, mindefaultFontSize)
 end
 
 local function onLoadVariables()
