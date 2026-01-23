@@ -20,6 +20,8 @@ local displayHealthCB = builder:CreateCheckBox(L["LKEY_OPTIONS_DISPLAY_HEALTH_CB
 builder:CreateText("")
 builder:CreateText(L["LKEY_OPTIONS_HEALTH_FORMAT_DESC1"])
 builder:CreateText("")
+local fontSizeEB = builder:CreateEditBox(L["LKEY_OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", 50)
+builder:CreateText("")
 local healthFormatEB = builder:CreateEditBox(L["LKEY_OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", 300)
 
 local healthRefreshRateSL = builder:CreateSlider(L["LKEY_OPTIONS_HEALTH_REFRESH_RATE_SL"], "refreshRate", 0.1, 1.0, 0.1)
@@ -33,6 +35,7 @@ local function onShow()
     shamanColorCB:FetchFromDB()
     displayHealthCB:FetchFromDB()
     healthFormatEB:FetchFromDB()
+    fontSizeEB:FetchFromDB()
     healthRefreshRateSL:FetchFromDB()
 end
 
