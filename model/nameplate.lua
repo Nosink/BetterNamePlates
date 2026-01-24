@@ -2,7 +2,19 @@ local name, ns = ...
 
 local settings = ns.settings
 
-local function onNamePlateAdded(driverFrame, namePlateUnitToken)
+local function onNamePlateCreated(_, namePlateFrame)
+    local unitFramme = driverFrame.UnitFrame
+    if not unitFramme then return end
+
+    local unit = {}
+    unit.token = namePlateUnitToken
+    unit.frame = unitFramme
+    unit.healthBar = unitFramme.healthBar
+
+    ns.activePlates[namePlateUnitToken] = unit
+end
+
+local function onNamePlateAdded(_, unitToken)
     local unitFramme = driverFrame.UnitFrame
     if not unitFramme then return end
 
@@ -28,7 +40,7 @@ end
 
 local function toggleShowClassColorInNameplateCVar()
     local state = settings.IsUsingCVarsEnabled() and 1 or 0
-    SetCVar("ShowClassColorInFriendlyNameplate", state)
+    --SetCVar("ShowClassColorInFriendlyNameplate", state)
 
 end
 
@@ -64,6 +76,8 @@ local function onSettingsChanged(_, key)
     end
 end
 
-ns:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
 ns:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+ns:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+ns:RegisterEvent("NAME_PLATE_CREATED", onNamePlateCreated)
+
 ns:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
