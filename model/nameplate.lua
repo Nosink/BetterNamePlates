@@ -3,15 +3,13 @@ local name, ns = ...
 local settings = ns.settings
 
 local function onNamePlateCreated(_, namePlateFrame)
-    local unitFramme = driverFrame.UnitFrame
-    if not unitFramme then return end
+    
+    local namePlate = {}
+    namePlate.frame = namePlateFrame
+    namePlate.castBar = namePlateFrame.castBar
+    namePlate.healthBar = namePlateFrame.healthBar
 
-    local unit = {}
-    unit.token = namePlateUnitToken
-    unit.frame = unitFramme
-    unit.healthBar = unitFramme.healthBar
-
-    ns.activePlates[namePlateUnitToken] = unit
+    ns:AddNamePlate(namePlate)
 end
 
 local function onNamePlateAdded(_, unitToken)
