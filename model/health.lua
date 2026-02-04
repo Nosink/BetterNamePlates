@@ -1,12 +1,14 @@
 local name, ns = ...
 
+local bus = LibStub("LibEventBus-1.0")
+
 local function onNamePlateCached(_, unit)
     if not unit.healthBar.label then
-        EventBus:TriggerEvent(name .. "_HEALTH_LABEL_REQUEST", unit)
+        bus:TriggerEvent(name .. "_HEALTH_LABEL_REQUEST", unit)
     end
     if not unit.ticker then
-        EventBus:TriggerEvent(name .. "_HEALTH_TICKER_REQUEST", unit)
+        bus:TriggerEvent(name .. "_HEALTH_TICKER_REQUEST", unit)
     end
 end
 
-EventBus:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)
+bus:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)

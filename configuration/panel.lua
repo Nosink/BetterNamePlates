@@ -1,6 +1,8 @@
 local _, ns = ...
 local L = ns.L
 
+local bus = LibStub("LibEventBus-1.0")
+
 local builder = ns.builder
 
 -- Panel Frame
@@ -39,4 +41,4 @@ local function onShow()
     healthRefreshRateSL:FetchFromDB()
 end
 
-EventBus:HookScript(builder.optionsPanel, "OnShow", onShow)
+bus:HookScript(builder.optionsPanel, "OnShow", onShow)

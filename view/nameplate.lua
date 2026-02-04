@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local bus = LibStub("LibEventBus-1.0")
+
 local function onNamePlateColorUpdateRequest(_, unit)
     if not unit or not unit.healthBar or not unit.color then return end
 
@@ -12,4 +14,4 @@ local function onNamePlateColorUpdateRequest(_, unit)
     unit.healthBar.barTexture:SetVertexColor(unit.color.r, unit.color.g, unit.color.b)
 end
 
-EventBus:RegisterEvent(name .. "_COLOR_UPDATE_REQUEST", onNamePlateColorUpdateRequest)
+bus:RegisterEvent(name .. "_COLOR_UPDATE_REQUEST", onNamePlateColorUpdateRequest)

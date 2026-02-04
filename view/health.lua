@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local bus = LibStub("LibEventBus-1.0")
+
 local settings = ns.settings
 
 local function onNamePlateHealthLabelUpdateRequest(_, unit)
@@ -26,5 +28,5 @@ local function onNamePlateHealthLabelRequest(_, unit)
 
 end
 
-EventBus:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)
-EventBus:RegisterEvent(name .. "_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)
+bus:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)
+bus:RegisterEvent(name .. "_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)

@@ -1,7 +1,6 @@
 local name, ns = ...
 
-local LibSnow = LibStub("LibSnow")
-EventBus = LibSnow:GetModule("EventBus")
+local bus = LibStub("LibEventBus-1.0")
 
 local function initializeVars()
     ns.namePlates = {}
@@ -19,7 +18,7 @@ local function onAddonLoaded(_, addOnName)
 
     initializeVars()
 
-    EventBus:TriggerEvent(name .. "_ADDON_LOADED")
+    bus:TriggerEvent(name .. "_ADDON_LOADED")
 end
 
-EventBus:RegisterEvent("ADDON_LOADED", onAddonLoaded)
+bus:RegisterEvent("ADDON_LOADED", onAddonLoaded)

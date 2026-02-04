@@ -1,7 +1,6 @@
 local name, ns = ...
 
-local LibSnow = LibStub("LibSnow")
-EventBus = LibSnow:GetModule("EventBus")
+local bus = LibStub("LibEventBus-1.0")
 
 ns.settings = ns.settings or {}
 
@@ -60,4 +59,4 @@ local function onLoadVariables()
     ns.settings.customHealthColorBars = ns.database.cVarClassColor
 end
 
-EventBus:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)
+bus:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)

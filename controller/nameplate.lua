@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local bus = LibStub("LibEventBus-1.0")
+
 local data = ns.data
 local settings = ns.settings
 
@@ -15,13 +17,13 @@ local function onNamePlateCached(_, unit)
 
     if settings.IsClassColoredEnabledUsingCVars() then
         if class == "SHAMAN" or class == "PALADIN" then
-            EventBus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
+            bus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
         end
         return
     end
     if not settings.IsClassColorEnabled() then return end
 
-    EventBus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
+    bus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
 end
 
-EventBus:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)
+bus:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)

@@ -2,6 +2,8 @@ local name, ns = ...
 
 local settings = ns.settings
 
+local bus = LibStub("LibEventBus-1.0")
+
 local function onNamePlateHealthTickerRequest(_, unit)
     if not unit then return end
 
@@ -25,7 +27,7 @@ local function onNamePlateHealthTickerRequest(_, unit)
             self.text = self.text:gsub("%%CURRENT%%", tostring(health))
             self.text = self.text:gsub("%%MAX%%", tostring(maxHealth))
 
-            EventBus:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", unit)
+            bus:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", unit)
         end)
     end
 
@@ -40,4 +42,4 @@ local function onNamePlateHealthTickerRequest(_, unit)
 
 end
 
-EventBus:RegisterEvent(name .. "_HEALTH_TICKER_REQUEST", onNamePlateHealthTickerRequest)
+bus:RegisterEvent(name .. "_HEALTH_TICKER_REQUEST", onNamePlateHealthTickerRequest)

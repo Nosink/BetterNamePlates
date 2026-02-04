@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local bus = LibStub("LibEventBus-1.0")
+
 local settings = ns.settings
 
 local function onNamePlateAdded(driverFrame, namePlateUnitToken)
@@ -16,7 +18,7 @@ local function onNamePlateAdded(driverFrame, namePlateUnitToken)
         ns.AddNamePlate(namePlateUnitToken, namePlate)
     end
 
-    EventBus:TriggerEvent(name .. "_NAMEPLATE_CACHED", namePlate)
+    bus:TriggerEvent(name .. "_NAMEPLATE_CACHED", namePlate)
 end
 
 local function onNamePlateRemoved(_, unitToken)
@@ -67,6 +69,6 @@ local function onSettingsChanged(_, key)
     end
 end
 
-EventBus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
-EventBus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
-EventBus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
+bus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
+bus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+bus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
