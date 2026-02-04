@@ -1,5 +1,8 @@
 local name, ns = ...
 
+local LibSnow = LibStub("LibSnow")
+EventBus = LibSnow:GetModule("EventBus")
+
 ns.settings = ns.settings or {}
 
 local defaultFontSize = 9
@@ -57,4 +60,4 @@ local function onLoadVariables()
     ns.settings.customHealthColorBars = ns.database.cVarClassColor
 end
 
-ns:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)
+EventBus:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)

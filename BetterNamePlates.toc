@@ -6,18 +6,19 @@
 ## Notes-enUS: Better Nameplates is an addon that enhances the default nameplates in World of Warcraft, providing improved visibility and customization options for players.
 ## Notes-esES:  Better Nameplates es un complemento que mejora las placas de nombre predeterminadas en World of Warcraft, proporcionando una mejor visibilidad y opciones de personalización para los jugadores.
 
+## Dependencies: LibSnow
+
 ## Author: Nosink Ð
 ## Version: 1.0
 ## SavedVariables: BetterNameplatesDB
+
+# Addon - Core
+addon.lua
 
 # Module: Localization
 localization/localization.lua
 localization/enUS.lua
 localization/esES-esMX.lua
-# --------------------
-
-# Module: Events
-events/bus.lua
 # --------------------
 
 # Module: DataBase
@@ -40,7 +41,6 @@ configuration/settings.lua
 # Addon - Core
 utils.lua
 data.lua
-addon.lua
 
 # MVC Nameplates Color 
 model/nameplate.lua

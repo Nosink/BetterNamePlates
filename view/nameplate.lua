@@ -12,4 +12,4 @@ local function onNamePlateColorUpdateRequest(_, unit)
     unit.healthBar.barTexture:SetVertexColor(unit.color.r, unit.color.g, unit.color.b)
 end
 
-ns:RegisterEvent(name .. "_COLOR_UPDATE_REQUEST", onNamePlateColorUpdateRequest)
+EventBus:RegisterEvent(name .. "_COLOR_UPDATE_REQUEST", onNamePlateColorUpdateRequest)

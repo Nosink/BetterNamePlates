@@ -16,7 +16,7 @@ local function onNamePlateAdded(driverFrame, namePlateUnitToken)
         ns.AddNamePlate(namePlateUnitToken, namePlate)
     end
 
-    ns:TriggerEvent(name .. "_NAMEPLATE_CACHED", namePlate)
+    EventBus:TriggerEvent(name .. "_NAMEPLATE_CACHED", namePlate)
 end
 
 local function onNamePlateRemoved(_, unitToken)
@@ -67,6 +67,6 @@ local function onSettingsChanged(_, key)
     end
 end
 
-ns:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
-ns:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
-ns:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
+EventBus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
+EventBus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+EventBus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)

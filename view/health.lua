@@ -26,5 +26,5 @@ local function onNamePlateHealthLabelRequest(_, unit)
 
 end
 
-ns:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)
-ns:RegisterEvent(name .. "_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)
+EventBus:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)
+EventBus:RegisterEvent(name .. "_HEALTH_LABEL_REQUEST", onNamePlateHealthLabelRequest)

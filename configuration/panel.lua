@@ -39,4 +39,4 @@ local function onShow()
     healthRefreshRateSL:FetchFromDB()
 end
 
-ns:HookScript(builder.optionsPanel, "OnShow", onShow)
+EventBus:HookScript(builder.optionsPanel, "OnShow", onShow)

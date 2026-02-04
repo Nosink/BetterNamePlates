@@ -18,7 +18,7 @@ function ns.builder.CreateEditBox(self, text, key, width)
     editBox:SetScript("OnTextChanged", function(self, userInput)
         if not userInput then return end
         ns.database[key] = self:GetText()
-        ns:TriggerEvent(name .. "_SETTINGS_CHANGED", key)
+        EventBus:TriggerEvent(name .. "_SETTINGS_CHANGED", key)
     end)
 
     editBox:SetScript("OnEnterPressed", function(self)

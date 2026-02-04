@@ -25,7 +25,7 @@ local function onNamePlateHealthTickerRequest(_, unit)
             self.text = self.text:gsub("%%CURRENT%%", tostring(health))
             self.text = self.text:gsub("%%MAX%%", tostring(maxHealth))
 
-            ns:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", unit)
+            EventBus:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", unit)
         end)
     end
 
@@ -40,4 +40,4 @@ local function onNamePlateHealthTickerRequest(_, unit)
 
 end
 
-ns:RegisterEvent(name .. "_HEALTH_TICKER_REQUEST", onNamePlateHealthTickerRequest)
+EventBus:RegisterEvent(name .. "_HEALTH_TICKER_REQUEST", onNamePlateHealthTickerRequest)

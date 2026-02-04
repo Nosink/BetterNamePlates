@@ -21,7 +21,7 @@ local function onVariablesLoaded()
     loadGlobalDatabase()
     loadPercharacterDatabase()
 
-    ns:TriggerEvent(name .. "_VARIABLES_LOADED")
+    EventBus:TriggerEvent(name .. "_VARIABLES_LOADED")
 end
 
-ns:RegisterEvent("VARIABLES_LOADED", onVariablesLoaded)
+EventBus:RegisterEvent("VARIABLES_LOADED", onVariablesLoaded)

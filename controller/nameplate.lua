@@ -15,13 +15,13 @@ local function onNamePlateCached(_, unit)
 
     if settings.IsClassColoredEnabledUsingCVars() then
         if class == "SHAMAN" or class == "PALADIN" then
-            ns:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
+            EventBus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
         end
         return
     end
     if not settings.IsClassColorEnabled() then return end
 
-    ns:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
+    EventBus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
 end
 
-ns:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)
+EventBus:RegisterEvent(name .. "_NAMEPLATE_CACHED", onNamePlateCached)
