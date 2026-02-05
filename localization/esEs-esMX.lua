@@ -7,7 +7,6 @@ if ns.locale == "esES" or ns.locale == "esMX" then
     L["LKEY_OPTIONS_NAMEPLATES_TITLE"] = "Placas de Nombre"
     L["LKEY_OPTIONS_CLASS_COLOR_CB"] = "Colorear Placas por Clase"
     L["LKEY_OPTIONS_CVAR_CLASS_COLOR_CB"] = "Usar Optimicación de Color de Clase (Requiere Recargar Interfaz)"
-    L["LKEY_OPTIONS_SHAMAN_COLOR_CB"] = "Usar Color de Chamán para Chamanes"
 
     L["LKEY_OPTIONS_HEALTH_LABEL_TITLE"] = "Etiqueta de Salud"
     L["LKEY_OPTIONS_DISPLAY_HEALTH_CB"] = "Mostrar Salud en la Placa"

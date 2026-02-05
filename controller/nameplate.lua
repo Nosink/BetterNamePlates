@@ -16,9 +16,6 @@ local function onNamePlateCached(_, unit)
     unit.color = data.classColor[class]
 
     if settings.IsClassColoredEnabledUsingCVars() then
-        if class == "SHAMAN" or class == "PALADIN" then
-            bus:TriggerEvent(name .. "_COLOR_UPDATE_REQUEST", unit)
-        end
         return
     end
     if not settings.IsClassColorEnabled() then return end

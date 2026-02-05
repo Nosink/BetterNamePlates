@@ -50,11 +50,6 @@ local function onSettingsChanged(_, key)
                 end
             end
         end
-    elseif (key == "shamanColor") then
-        local namePlates = C_NamePlate.GetNamePlates()
-        for _, namePlate in ipairs(namePlates) do
-            onNamePlateAdded(namePlate, namePlate.namePlateUnitToken)
-        end
     elseif (key == "cVarClassColor") then
         toggleShowClassColorInNameplateCVar()
     elseif (key == "fontSize") then
