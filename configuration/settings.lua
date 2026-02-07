@@ -21,11 +21,6 @@ function ns.settings.IsClassColoredEnabledUsingCVars()
     return ns.settings.customHealthColorBars
 end
 
-function ns.settings.GetUnitClassName(unit)
-    local class = UnitClassBase(unit)
-    return class
-end
-
 -- Health
 function ns.settings.IsHealthDisplayEnabled()
     return ns.database.displayHealth

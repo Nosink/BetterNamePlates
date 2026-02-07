@@ -38,19 +38,12 @@ configuration/commands.lua
 configuration/settings.lua
 # --------------------
 
-# Addon - Core
-utils.lua
-data.lua
-
 # MVC Nameplates Color 
 model/nameplate.lua
 view/nameplate.lua
 controller/nameplate.lua
 
 # MVC Health Label
-model/health.lua
-view/health.lua
-controller/health.lua
-
-# MVC LongDistance Nameplates
-model/distantNameplate.lua
+model/healthBar.lua
+view/healthBar.lua
+controller/healthBar.lua

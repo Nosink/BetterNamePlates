@@ -43,3 +43,11 @@ local function onNamePlateHealthTickerRequest(_, unit)
 end
 
 bus:RegisterEvent(name .. "_HEALTH_TICKER_REQUEST", onNamePlateHealthTickerRequest)
+
+local function onUnitHealth(_, unitToken)
+    if not string.find(unitToken, "nameplate") then return end
+
+    --bus:TriggerEvent(name .. "_HEALTH_TICKER_REQUEST", unitToken)
+end
+
+bus:RegisterEvent("UNIT_HEALTH", onUnitHealth)

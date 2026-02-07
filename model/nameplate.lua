@@ -4,31 +4,38 @@ local bus = LibStub("LibEventBus-1.0")
 
 local settings = ns.settings
 
-local function onNamePlateAdded(driverFrame, namePlateUnitToken)
-    local unitFrame = driverFrame.UnitFrame
-    if not unitFrame then return end
+local function createCastLabel(UnitFrame, castBar)
+    if not castBar then return end
 
-    local namePlate = ns.GetNamePlate(namePlateUnitToken)
+    local castLabel = castBar:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+    castLabel:SetPoint("CENTER", castBar, "CENTER", 0, 0)
+    UnitFrame.castLabel = castLabel
+end
 
-    if not namePlate then
-        namePlate = {}
-        namePlate.token = namePlateUnitToken
-        namePlate.castBar = unitFrame.castBar
-        namePlate.healthBar = unitFrame.healthBar
-        ns.AddNamePlate(namePlateUnitToken, namePlate)
+local function onNamePlateAdded(_, unitToken)
+    local namePlate = ns:GetNamePlate(unitToken)
+    local UnitFrame = namePlate.UnitFrame or nil
+    if not UnitFrame then return end
+
+    if not UnitFrame.healthLabel then 
+        createHealthLabel(UnitFrame, UnitFrame.healthBar)
     end
 
-    bus:TriggerEvent(name .. "_NAMEPLATE_CACHED", namePlate)
+    if not UnitFrame.castLabel then
+        createCastLabel(UnitFrame, UnitFrame.castBar)
+    end
+
+    bus:TriggerEvent(name .. "_NAME_PLATE_READY", unitToken)
 end
 
 local function onNamePlateRemoved(_, unitToken)
-    local namePlate = ns.GetNamePlate(unitToken)
-    if not namePlate then return end
-
-    if namePlate.RestoreColor then namePlate:RestoreColor() end
-    namePlate.healthBar.label:SetText("")
-    namePlate:ClearTicker()
-    ns.namePlates[unitToken] = nil
+    -- local namePlate = ns:GetNamePlate(unitToken)
+    -- if not namePlate then return end
+-- 
+    -- if namePlate.RestoreColor then namePlate:RestoreColor() end
+    -- namePlate.healthBar.label:SetText("")
+    -- namePlate:ClearTicker()
+    -- ns.namePlates[unitToken] = nil
 end
 
 local function toggleShowClassColorInNameplateCVar()
@@ -64,6 +71,20 @@ local function onSettingsChanged(_, key)
     end
 end
 
-bus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
+local function onForbidenNamePlateCreated(_, namePlateFrame)
+    print("Forbidden nameplate created")
+    for k, v in pairs(namePlateFrame) do
+        print(k .. ": " .. tostring(v))
+    end
+
+end
+-- bus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
+
+bus:RegisterEvent(name .. "_NAME_PLATE_ADDED", onNamePlateAdded)
 bus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+
+bus:RegisterEvent("FORBIDDEN_NAME_PLATE_CREATED", onForbidenNamePlateCreated)
+-- bus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+-- bus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+
 bus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
