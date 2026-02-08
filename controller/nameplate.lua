@@ -1,9 +1,7 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
-
 local function onNamePlateAdded(_, unitToken)
-    bus:TriggerEvent(name .. "_NAME_PLATE_ADDED", unitToken)
+    BNPBus:TriggerEvent(name .. "_NAME_PLATE_ADDED", unitToken)
 end
 
 local function onNamePlateReady(_, unitToken)
@@ -15,12 +13,11 @@ local function onNamePlateReady(_, unitToken)
     if unitType ~= "Player" then return end
 
     local namePlate = ns:GetNamePlate(unitToken)
-
     local className = UnitClassBase(unitToken)
     namePlate.color = C_ClassColor.GetClassColor(className)
 
-    bus:TriggerEvent(name .. "_NAME_PLATE_UPDATE_COLOR_REQUEST", unitToken)
+    BNPBus:TriggerEvent(name .. "_NAME_PLATE_UPDATE_COLOR_REQUEST", unitToken)
 end
 
-bus:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
-bus:RegisterEvent(name .. "_NAME_PLATE_READY", onNamePlateReady)
+BNPBus:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_READY", onNamePlateReady)

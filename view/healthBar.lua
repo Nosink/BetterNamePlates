@@ -1,18 +1,13 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
+local function onHealthLabelUpdateRequest(_, unitToken, text)
+    local namePlate = ns:GetNamePlate(unitToken)
+    if not namePlate then return end
 
-local settings = ns.settings
+    local healthLabel = namePlate.UnitFrame.healthLabel
 
-local function onNamePlateHealthLabelUpdateRequest(_, unit)
-    if not unit or not unit.healthBar.label then return end
-
-    if settings.IsHealthDisplayEnabled() then
-        unit.healthBar.label:SetText(unit.text)
-    else
-        unit.healthBar.label:SetText("")
-    end
+    healthLabel:SetText(text)
 end
 
 
-bus:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onNamePlateHealthLabelUpdateRequest)
+BNPBus:RegisterEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", onHealthLabelUpdateRequest)

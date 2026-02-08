@@ -1,6 +1,5 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
 
 local alpha = 1.0
 
@@ -14,4 +13,4 @@ local function onNamePlateUpdateColorRequest(_, unitToken)
     barTexture:SetVertexColor(color.r, color.g, color.b, alpha)
 end
 
-bus:RegisterEvent(name .. "_NAME_PLATE_UPDATE_COLOR_REQUEST", onNamePlateUpdateColorRequest)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_UPDATE_COLOR_REQUEST", onNamePlateUpdateColorRequest)

@@ -1,7 +1,5 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
-
 ns.settings = ns.settings or {}
 
 local defaultFontSize = 9
@@ -46,4 +44,4 @@ local function onLoadVariables()
     ns.settings.customHealthColorBars = ns.database.cVarClassColor
 end
 
-bus:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)
+BNPBus:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)

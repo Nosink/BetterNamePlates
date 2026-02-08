@@ -1,31 +1,14 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
 
 local settings = ns.settings
-
-local function createCastLabel(UnitFrame, castBar)
-    if not castBar then return end
-
-    local castLabel = castBar:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-    castLabel:SetPoint("CENTER", castBar, "CENTER", 0, 0)
-    UnitFrame.castLabel = castLabel
-end
 
 local function onNamePlateAdded(_, unitToken)
     local namePlate = ns:GetNamePlate(unitToken)
     local UnitFrame = namePlate.UnitFrame or nil
     if not UnitFrame then return end
 
-    if not UnitFrame.healthLabel then 
-        createHealthLabel(UnitFrame, UnitFrame.healthBar)
-    end
-
-    if not UnitFrame.castLabel then
-        createCastLabel(UnitFrame, UnitFrame.castBar)
-    end
-
-    bus:TriggerEvent(name .. "_NAME_PLATE_READY", unitToken)
+    BNPBus:TriggerEvent(name .. "_NAME_PLATE_READY", unitToken)
 end
 
 local function onNamePlateRemoved(_, unitToken)
@@ -78,13 +61,13 @@ local function onForbidenNamePlateCreated(_, namePlateFrame)
     end
 
 end
--- bus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
+-- BNPBus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
 
-bus:RegisterEvent(name .. "_NAME_PLATE_ADDED", onNamePlateAdded)
-bus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_ADDED", onNamePlateAdded)
+BNPBus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
 
-bus:RegisterEvent("FORBIDDEN_NAME_PLATE_CREATED", onForbidenNamePlateCreated)
--- bus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
--- bus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+-- BNPBus:RegisterEvent("FORBIDDEN_NAME_PLATE_CREATED", onForbidenNamePlateCreated)
+-- BNPBus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+-- BNPBus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
 
-bus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
+BNPBus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)

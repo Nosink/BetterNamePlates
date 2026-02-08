@@ -47,3 +47,8 @@ controller/nameplate.lua
 model/healthBar.lua
 view/healthBar.lua
 controller/healthBar.lua
+
+# MVC Cast Bar
+model/castBar.lua
+view/castBar.lua
+controller/castBar.lua

@@ -1,6 +1,7 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
+local LibEventBus = LibStub("LibEventBus-1.0")
+BNPBus = LibEventBus:NewBus("BNPBus", true)
 
 function ns:GetNamePlate(unitToken)
     local nameplate = C_NamePlate.GetNamePlateForUnit(unitToken, issecure())
@@ -12,7 +13,7 @@ end
 local function onAddonLoaded(_, addOnName)
     if addOnName ~= name then return end
 
-    bus:TriggerEvent(name .. "_ADDON_LOADED")
+    BNPBus:TriggerEvent(name .. "_ADDON_LOADED")
 end
 
-bus:RegisterEvent("ADDON_LOADED", onAddonLoaded)
+BNPBus:RegisterEvent("ADDON_LOADED", onAddonLoaded)

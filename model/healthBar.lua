@@ -1,14 +1,12 @@
 local name, ns = ...
 
-local bus = LibStub("LibEventBus-1.0")
-
 local settings = ns.settings
 
 local function createHealthLabel(UnitFrame, healthBar)
     if not healthBar  then return end
 
     local healthLabel = healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 2, 0)
+    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 1, 0)
     healthLabel:SetJustifyV("MIDDLE")
     local fontName = healthLabel:GetFont()
     healthLabel:SetFont(tostring(fontName), settings.GetFontSize(), "OUTLINE")
@@ -27,6 +25,8 @@ local function onNamePlateReady(_, unitToken)
     if not UnitFrame.healthLabel then 
         createHealthLabel(UnitFrame, UnitFrame.healthBar)
     end
+
+    BNPBus:TriggerEvent(name .. "_NAME_PLATE_HEALTH_LABEL_READY", unitToken)
 end
 
-bus:RegisterEvent(name .. "_NAME_PLATE_READY", onNamePlateReady)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_READY", onNamePlateReady)
