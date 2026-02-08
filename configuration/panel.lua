@@ -11,7 +11,6 @@ builder:CreateTitle(L["LKEY_OPTIONS_TITLE"])
 
 -- Options
 builder:CreateSection(L["LKEY_OPTIONS_NAMEPLATES_TITLE"])
-local classColorCB = builder:CreateCheckBox(L["LKEY_OPTIONS_CLASS_COLOR_CB"], "classColor")
 local cVarClassColorCB = builder:CreateCheckBox(L["LKEY_OPTIONS_CVAR_CLASS_COLOR_CB"], "cVarClassColor")
 
 builder:CreateSection(L["LKEY_OPTIONS_HEALTH_LABEL_TITLE"])
@@ -22,19 +21,21 @@ builder:CreateText("")
 local fontSizeEB = builder:CreateEditBox(L["LKEY_OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", 50)
 builder:CreateText("")
 local healthFormatEB = builder:CreateEditBox(L["LKEY_OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", 300)
-
 local healthRefreshRateSL = builder:CreateSlider(L["LKEY_OPTIONS_HEALTH_REFRESH_RATE_SL"], "refreshRate", 0.1, 1.0, 0.1)
+
+builder:CreateSection(L["LKEY_OPTIONS_CAST_LABEL_TITLE"])
+local displayCastCB = builder:CreateCheckBox(L["LKEY_OPTIONS_DISPLAY_CAST_CB"], "displayCast")
 
 -- Register
 builder:Register()
 
 local function onShow()
-    classColorCB:FetchFromDB()
     cVarClassColorCB:FetchFromDB()
     displayHealthCB:FetchFromDB()
     healthFormatEB:FetchFromDB()
     fontSizeEB:FetchFromDB()
     healthRefreshRateSL:FetchFromDB()
+    displayCastCB:FetchFromDB()
 end
 
 BNPBus:HookScript(builder.optionsPanel, "OnShow", onShow)

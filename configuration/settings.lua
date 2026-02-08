@@ -1,25 +1,14 @@
-local name, ns = ...
+local _, ns = ...
 
 ns.settings = ns.settings or {}
 
-local defaultFontSize = 9
+local defaultFontSize = 10
 local mindefaultFontSize = 6
-local defaultRefreshRate = 0.2
-
--- Class Color
-function ns.settings.IsClassColorEnabled()
-    return ns.database.classColor
-end
 
 function ns.settings.IsUsingCVarsEnabled()
     return ns.database.cVarClassColor
 end
 
-function ns.settings.IsClassColoredEnabledUsingCVars()
-    return ns.settings.customHealthColorBars
-end
-
--- Health
 function ns.settings.IsHealthDisplayEnabled()
     return ns.database.displayHealth
 end
@@ -29,19 +18,14 @@ function ns.settings.GetHealthFormat()
 end
 
 function ns.settings.GetRefreshRate()
-    return ns.database.refreshRate or defaultRefreshRate
+    return ns.database.refreshRate
 end
 
 function ns.settings.GetFontSize()
-    local fontSize = tonumber(ns.database.fontSize)
-    if not fontSize then
-        fontSize = defaultFontSize
-    end
+    local fontSize = tonumber(ns.database.fontSize) or defaultFontSize
     return max(fontSize or mindefaultFontSize, mindefaultFontSize)
 end
 
-local function onLoadVariables()
-    ns.settings.customHealthColorBars = ns.database.cVarClassColor
+function ns.settings.IsCastDisplayEnabled()
+    return ns.database.displayCast
 end
-
-BNPBus:RegisterEvent(name .. "_VARIABLES_LOADED", onLoadVariables)
