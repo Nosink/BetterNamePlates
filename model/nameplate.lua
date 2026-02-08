@@ -8,17 +8,9 @@ local function onNamePlateAdded(_, unitToken)
     local UnitFrame = namePlate.UnitFrame or nil
     if not UnitFrame then return end
 
-    BNPBus:TriggerEvent(name .. "_NAME_PLATE_READY", unitToken)
-end
+    UnitFrame.unitToken = unitToken
 
-local function onNamePlateRemoved(_, unitToken)
-    -- local namePlate = ns:GetNamePlate(unitToken)
-    -- if not namePlate then return end
--- 
-    -- if namePlate.RestoreColor then namePlate:RestoreColor() end
-    -- namePlate.healthBar.label:SetText("")
-    -- namePlate:ClearTicker()
-    -- ns.namePlates[unitToken] = nil
+    BNPBus:TriggerEvent(name .. "_NAME_PLATE_READY", unitToken)
 end
 
 local function toggleShowClassColorInNameplateCVar()
@@ -54,20 +46,5 @@ local function onSettingsChanged(_, key)
     end
 end
 
-local function onForbidenNamePlateCreated(_, namePlateFrame)
-    print("Forbidden nameplate created")
-    for k, v in pairs(namePlateFrame) do
-        print(k .. ": " .. tostring(v))
-    end
-
-end
--- BNPBus:HookSecureFunc(NamePlateBaseMixin, "OnAdded", onNamePlateAdded)
-
 BNPBus:RegisterEvent(name .. "_NAME_PLATE_ADDED", onNamePlateAdded)
-BNPBus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
-
--- BNPBus:RegisterEvent("FORBIDDEN_NAME_PLATE_CREATED", onForbidenNamePlateCreated)
--- BNPBus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
--- BNPBus:RegisterEvent("FORBIDDEN_NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
-
 BNPBus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)

@@ -22,36 +22,45 @@ local function clearTicker(namePlate)
     end
 end
 
-local function onCastBarShow(unitToken)
-    print ("Cast bar shown for " .. unitToken)
-    local namePlate = ns:GetNamePlate(unitToken)
+local function onCastBarShow(UnitFrame)
+    local namePlate = ns:GetNamePlate(UnitFrame.unitToken)
     if not namePlate then return end
 
     clearTicker(namePlate)
 
     local ticker = C_Timer.NewTicker(0.1, function() 
-        local text = getCastInfo(unitToken)
-        BNPBus:TriggerEvent(name .. "_CAST_LABEL_UPDATE_REQUEST", unitToken, text)
+        local text = getCastInfo(UnitFrame.unitToken)
+        BNPBus:TriggerEvent(name .. "_CAST_LABEL_UPDATE_REQUEST", UnitFrame.unitToken, text)
     end, nil)
 
     namePlate.castBarTicker = ticker
 end
 
-local function onCastBarHide(unitToken)
-    print ("Cast bar hidden for " .. unitToken)
+local function onNamePlateAdded(_, unitToken)
+    local namePlate = ns:GetNamePlate(unitToken)
+    if not namePlate then return end
+
+    onCastBarShow(namePlate.UnitFrame)
+end
+
+local function onNamePlateRemoved(_, unitToken)
     local namePlate = ns:GetNamePlate(unitToken)
     if not namePlate then return end
 
     clearTicker(namePlate)
 end
 
-local function onCastLabelReady(_, unitToken)
+local function onNamePlateReady(_, unitToken)
     local namePlate = ns:GetNamePlate(unitToken)
     if not namePlate then return end
 
-    local castLabel = namePlate.UnitFrame.castLabel
-    BNPBus:HookScript(castLabel, "OnShow", function() onCastBarShow(unitToken) end)
-    BNPBus:HookScript(castLabel, "OnHide", function() onCastBarHide(unitToken) end)
+    local UnitFrame = namePlate.UnitFrame
+    local castBar = namePlate.UnitFrame.castBar
+
+    BNPBus:HookScript(castBar, "OnShow", function() onCastBarShow(UnitFrame) end)
 end
 
-BNPBus:RegisterEvent(name .. "_NAME_PLATE_CAST_LABEL_READY", onCastLabelReady)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_READY", onNamePlateReady)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_ADDED", onNamePlateAdded)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_REMOVED", onNamePlateRemoved)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_CAST_LABEL_READY", onNamePlateReady)
