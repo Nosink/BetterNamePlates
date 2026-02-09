@@ -12,16 +12,14 @@
 
 libs/LibEventBus-1.0/LibEventBus-1.0.lua 
 
-
+# Addon - Core
+addon.lua
 
 # Module: Localization
 localization/localization.lua
 localization/enUS.lua
 localization/esES-esMX.lua
 # --------------------
-
-# Addon - Core
-addon.lua
 
 # Module: DataBase
 database/data.lua
@@ -40,16 +38,19 @@ configuration/commands.lua
 configuration/settings.lua
 # --------------------
 
+
+
 # MVC Nameplates Color 
 model/nameplate.lua
+view/nameplate.lua
 controller/nameplate.lua
 
 # MVC Health Label
-model/healthBar.lua
-view/healthBar.lua
-controller/healthBar.lua
+model/healthLabel.lua
+view/healthLabel.lua
+controller/healthLabel.lua
 
-# MVC Cast Bar
-model/castBar.lua
-view/castBar.lua
-controller/castBar.lua
+# MVC Cast Label
+model/castLabel.lua
+view/castLabel.lua
+controller/castLabel.lua

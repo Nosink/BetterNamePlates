@@ -5,6 +5,7 @@ local settings = ns.settings
 local function getFormattedText(unitToken)
     local text = settings.GetHealthFormat()
 
+    local name = UnitName(unitToken)
     local health = UnitHealth(unitToken)
     local maxHealth = UnitHealthMax(unitToken)
 
@@ -12,23 +13,32 @@ local function getFormattedText(unitToken)
     local firstDecimal = math.floor(((health / maxHealth) * 1000) % 10)
     local secondDecimal = math.floor(((health / maxHealth) * 10000) % 10)
 
+    text = text:gsub("%%NAME%%", tostring(name))
     text = text:gsub("%%PERCENT%%", tostring(healthPercent) .. "%%")
     text = text:gsub("%%PERCENT1%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. "%%")
     text = text:gsub("%%PERCENT2%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. tostring(secondDecimal) .. "%%")
 
+    local deficit = health - maxHealth
+    local deficitStr = deficit ~= 0 and tostring(deficit) or ""
+
+    text = text:gsub("%%DEFICIT%%", deficitStr)
     text = text:gsub("%%CURRENT%%", tostring(health))
     text = text:gsub("%%MAX%%", tostring(maxHealth))
 
     return text
 end
 
-local function onUnitHealth(_, unitToken)
+local function updateHealthLabel(unitToken)
     local text = getFormattedText(unitToken)
     BNPBus:TriggerEvent(name .. "_HEALTH_LABEL_UPDATE_REQUEST", unitToken, text)
 end
 
+local function onUnitHealth(_, unitToken)
+    updateHealthLabel(unitToken)
+end
+
 local function onHealthLabelReady(_, unitToken)
-    onUnitHealth(nil, unitToken)
+    updateHealthLabel(unitToken)
 end
 
 BNPBus:RegisterEvent("UNIT_HEALTH", onUnitHealth)
