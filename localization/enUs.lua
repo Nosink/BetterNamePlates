@@ -7,9 +7,6 @@ L["LKEY_BUTTON_RELOAD"] = "Reload UI"
 
 L["LKEY_OPTIONS_TITLE"] = name .. " " .. "Options"
 
-L["LKEY_OPTIONS_NAMEPLATES_TITLE"] = "Nameplates"
-L["LKEY_OPTIONS_CVAR_CLASS_COLOR_CB"] = "Use Class Color Optimization (Requires UI Reload)"
-
 L["LKEY_OPTIONS_HEALTH_LABEL_TITLE"] = "Health Label"
 L["LKEY_OPTIONS_DISPLAY_HEALTH_CB"] = "Display Health on Nameplate"
 L["LKEY_OPTIONS_HEALTH_FORMAT_DESC1"] = "· %PERCENT% - Health Percentage \n"
@@ -21,5 +18,5 @@ L["LKEY_OPTIONS_HEALTH_FORMAT_EB"] = "Format"
 L["LKEY_OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"] = "Font Size (Min 6)"
 L["LKEY_OPTIONS_HEALTH_REFRESH_RATE_SL"] = "Health Refresh Rate (Seconds)"
 
-L["LKEY_OPTIONS_CAST_LABEL_TITLE"] = "Cast Bar"
+L["LKEY_OPTIONS_CAST_LABEL_TITLE"] = "Cast Label"
 L["LKEY_OPTIONS_DISPLAY_CAST_CB"] = "Display Cast Bar on Nameplate"
