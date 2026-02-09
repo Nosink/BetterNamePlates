@@ -26,7 +26,7 @@ Lightweight Anniversary addon that give some extras to the default Nameplates, c
 - Localization support (English, Spanish/esMX).
 
 ## Compatibility
-- WoW Burning Crusade Annñiversary 2.5.5
+- WoW Burning Crusade Anniversary 2.5.5
 
 ## Commands
 - /betternameplates  - open the options panel
