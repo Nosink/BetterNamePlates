@@ -21,7 +21,7 @@ local function displayReloadPanel()
     local fontName, _, flags = title:GetFont()
     title:SetFont(tostring(fontName), 24, flags)
     title:SetTextColor(0.2, 0.6, 1, 1)
-    title:SetText(L["LKEY_TITLE_RELOAD"])
+    title:SetText(L["LKEY_TITLE_SETUP"])
 
     local separator = frame:CreateTexture(nil, "BORDER")
     separator:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -38)
