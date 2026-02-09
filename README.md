@@ -13,6 +13,7 @@ Lightweight Classic Era addon that give some extras to the default Nameplates, a
 		- %PERCENT% → integer percent (e.g., 67%)
 		- %PERCENT1% → one decimal (e.g., 67.4%)
 		- %PERCENT2% → two decimals (e.g., 67.43%)
+		- %DEFICIT% → health deficit
 		- %CURRENT% → current health value
 		- %MAX% → max health value
 	- Refresh Rate: how often the health text updates (0.1–1.0s; default 0.1s).

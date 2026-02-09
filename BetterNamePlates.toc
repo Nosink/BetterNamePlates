@@ -10,14 +10,15 @@
 ## Version: 1.2.0
 ## SavedVariables: BetterNameplatesDB
 
+libs/LibEventBus-1.0/LibEventBus-1.0.lua 
+
+# Addon - Core
+addon.lua
+
 # Module: Localization
 localization/localization.lua
 localization/enUS.lua
 localization/esES-esMX.lua
-# --------------------
-
-# Module: Events
-events/bus.lua
 # --------------------
 
 # Module: DataBase
@@ -37,10 +38,7 @@ configuration/commands.lua
 configuration/settings.lua
 # --------------------
 
-# Addon - Core
-utils.lua
-data.lua
-addon.lua
+
 
 # MVC Nameplates Color 
 model/nameplate.lua
@@ -48,9 +46,11 @@ view/nameplate.lua
 controller/nameplate.lua
 
 # MVC Health Label
-model/health.lua
-view/health.lua
-controller/health.lua
+model/healthLabel.lua
+view/healthLabel.lua
+controller/healthLabel.lua
 
-# MVC LongDistance Nameplates
-model/distantNameplate.lua
+# MVC Cast Label
+model/castLabel.lua
+view/castLabel.lua
+controller/castLabel.lua
