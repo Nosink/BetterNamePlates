@@ -3,12 +3,10 @@ local name, ns = ...
 local settings = ns.settings
 
 local function getCastInfo(unitToken)
-    local name, _, _, startTimeMs, endTimeMs, _, _, notInterruptible = UnitCastingInfo(unitToken)
+    local name, _, _, startTimeMs, endTimeMs = UnitCastingInfo(unitToken)
     if not name then
-        name, _, _, startTimeMs, endTimeMs, _, notInterruptible= UnitChannelInfo(unitToken)
+        name, _, _, startTimeMs, endTimeMs= UnitChannelInfo(unitToken)
     end
-
-    print ("UnitToken: " .. tostring(unitToken) .. " interrupt?: " .. tostring(notInterruptible))
     if not name then return "" end
 
     local currentTime = GetTime() * 1000
