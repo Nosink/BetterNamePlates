@@ -5,7 +5,7 @@ local L = ns.L
 local function displayReloadPanel()
     local frame = CreateFrame("Frame", nil, UIParent, "BackdropTemplate")
     frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-    frame:SetSize(300, 110)
+    frame:SetSize(250, 120)
     frame:SetBackdrop({
         bgFile = "Interface/Tooltips/UI-Tooltip-Background",
         edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -16,12 +16,24 @@ local function displayReloadPanel()
     frame:SetBackdropBorderColor(1, 1, 1, 0.8)
     frame:Show()
 
-    local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    local title = frame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
     title:SetPoint("TOP", frame, "TOP", 0, -10)
+    local fontName, _, flags = title:GetFont()
+    title:SetFont(tostring(fontName), 24, flags)
+    title:SetTextColor(0.2, 0.6, 1, 1)
     title:SetText(L["LKEY_TITLE_RELOAD"])
 
+    local separator = frame:CreateTexture(nil, "BORDER")
+    separator:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -38)
+    separator:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -8, -38)
+    separator:SetColorTexture(1, 1, 1, 0.15)
+    separator:SetHeight(2)
+
     local message = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    message:SetPoint("TOP", title, "BOTTOM", 0, -10)
+    message:SetTextColor(1, 1, 1, 1)
+    local fontName, _, flags = title:GetFont()
+    message:SetFont(tostring(fontName), 14, flags)
+    message:SetPoint("TOP", title, "BOTTOM", 0, -12)
     message:SetText(L["LKEY_MESSAGE_RELOAD"])
 
     local button = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")

@@ -4,8 +4,8 @@ local L = ns.L
 if ns.locale == "esES" or ns.locale == "esMX" then
 
     L["LKEY_TITLE_RELOAD"] = name
-    L["LKEY_MESSAGE_RELOAD"] = "Primera configuración detectada.\nPor favor, recarga la interfaz."
-    L["LKEY_BUTTON_RELOAD"] = "Recargar Interfaz"
+    L["LKEY_MESSAGE_RELOAD"] = "Primera configuración detectada.\nPor favor, configure la interfaz."
+    L["LKEY_BUTTON_RELOAD"] = "Configurar Interfaz"
 
     L["LKEY_OPTIONS_TITLE"] = name .. " " .. "Opciones"
 

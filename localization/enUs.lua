@@ -2,8 +2,8 @@ local name, ns = ...
 local L = ns.L
 
 L["LKEY_TITLE_RELOAD"] = name
-L["LKEY_MESSAGE_RELOAD"] = "First time setup detected.\nPlease reload the UI."
-L["LKEY_BUTTON_RELOAD"] = "Reload UI"
+L["LKEY_MESSAGE_RELOAD"] = "First time setup detected.\nPlease configure the UI."
+L["LKEY_BUTTON_RELOAD"] = "Configure UI"
 
 L["LKEY_OPTIONS_TITLE"] = name .. " " .. "Options"
 
