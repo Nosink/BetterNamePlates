@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0] - 09/02/2026
+
+### Added
+- CastLabel control to display casting or channeling information in cast bar.
+
+## Removed
+- Old monolith about fetch class names and re-color bar texture of nameplate `HealthBarsContainer`
+
+### Fixed
+- NO more crashes on Dungeons.
+	- Control over `FORBIDDEN_NAME_PLATE_···" Events and other namepalte events related.
+
+### Changed
+- Forced to use of CVars to improve performance and avoid color refreshing errors
+ 
+--- 
+
 ## [1.2.0] - 23/01/2026
 Allow extra customization to health label
 
