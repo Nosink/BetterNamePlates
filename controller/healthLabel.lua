@@ -3,6 +3,8 @@ local name, ns = ...
 local settings = ns.settings
 
 local function getFormattedText(unitToken)
+    if not settings.IsHealthLabelEnabled() then return "" end
+
     local text = settings.GetHealthFormat()
 
     local name = UnitName(unitToken)
@@ -41,20 +43,22 @@ local function onHealthLabelReady(_, unitToken)
     updateHealthLabel(unitToken)
 end
 
-BNPBus:RegisterEvent("UNIT_HEALTH", onUnitHealth)
-BNPBus:RegisterEvent(name .. "_NAME_PLATE_HEALTH_LABEL_READY", onHealthLabelReady)
-
 local function onSettingsChanged(_, key)
-    if (key == "fontSize") then
-        local namePlates = C_NamePlate.GetNamePlates()
-        for _, namePlate in ipairs(namePlates) do
-            local unit = ns.namePlates[namePlate.namePlateUnitToken]
-            if unit and unit.healthBar.label then
-                local fontName = unit.healthBar.label:GetFont()
-                unit.healthBar.label:SetFont(tostring(fontName), settings.GetFontSize(), "OUTLINE")
-            end
+    if (key == "displayHealth") then
+        for _, namePlate in pairs(ns:GetAllNameplates()) do
+            local unitToken = namePlate.UnitFrame.unitToken
+            if not unitToken then return end
+            updateHealthLabel(unitToken)
+        end
+    elseif (key == "healthFormat") then
+        for _, namePlate in pairs(ns:GetAllNameplates()) do
+            local unitToken = namePlate.UnitFrame.unitToken
+            if not unitToken then return end
+            updateHealthLabel(unitToken)
         end
     end
 end
 
+BNPBus:RegisterEvent("UNIT_HEALTH", onUnitHealth)
+BNPBus:RegisterEvent(name .. "_NAME_PLATE_HEALTH_LABEL_READY", onHealthLabelReady)
 BNPBus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)

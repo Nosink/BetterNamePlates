@@ -2,14 +2,10 @@ local _, ns = ...
 
 ns.settings = ns.settings or {}
 
-local defaultFontSize = 10
+local defaultFontSize = 9
 local mindefaultFontSize = 6
 
-function ns.settings.IsUsingCVarsEnabled()
-    return ns.database.cVarClassColor
-end
-
-function ns.settings.IsHealthDisplayEnabled()
+function ns.settings.IsHealthLabelEnabled()
     return ns.database.displayHealth
 end
 
@@ -17,15 +13,11 @@ function ns.settings.GetHealthFormat()
     return ns.database.healthFormat
 end
 
-function ns.settings.GetRefreshRate()
-    return ns.database.refreshRate
-end
-
 function ns.settings.GetFontSize()
     local fontSize = tonumber(ns.database.fontSize) or defaultFontSize
     return max(fontSize or mindefaultFontSize, mindefaultFontSize)
 end
 
-function ns.settings.IsCastDisplayEnabled()
+function ns.settings.IsCastLabelEnabled()
     return ns.database.displayCast
 end

@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local settings = ns.settings
+
 local function getCastInfo(unitToken)
     local name, _, _, startTimeMs, endTimeMs = UnitCastingInfo(unitToken)
     if not name then
@@ -23,6 +25,8 @@ local function clearTicker(namePlate)
 end
 
 local function onCastBarShow(UnitFrame)
+    if not settings.IsCastLabelEnabled() then return end
+
     local namePlate = ns:GetNamePlate(UnitFrame.unitToken)
     if not namePlate then return end
 
@@ -60,7 +64,26 @@ local function onNamePlateReady(_, unitToken)
     BNPBus:HookScript(castBar, "OnShow", function() onCastBarShow(UnitFrame) end)
 end
 
+
+local function onSettingsChanged(_, key)
+    if (key == "displayCast") then
+        for _, namePlate in pairs(ns:GetAllNameplates()) do
+            local unitToken = namePlate.UnitFrame.unitToken
+            if not unitToken then return end
+
+            if settings.IsCastLabelEnabled() then
+                onCastBarShow(namePlate.UnitFrame)
+            else
+                clearTicker(namePlate)
+                BNPBus:TriggerEvent(name .. "_CAST_LABEL_UPDATE_REQUEST", unitToken, "")
+            end
+        end
+    end
+end
+
+
 BNPBus:RegisterEvent(name .. "_NAME_PLATE_READY", onNamePlateReady)
 BNPBus:RegisterEvent(name .. "_NAME_PLATE_ADDED", onNamePlateAdded)
 BNPBus:RegisterEvent(name .. "_NAME_PLATE_REMOVED", onNamePlateRemoved)
 BNPBus:RegisterEvent(name .. "_NAME_PLATE_CAST_LABEL_READY", onNamePlateReady)
+BNPBus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
