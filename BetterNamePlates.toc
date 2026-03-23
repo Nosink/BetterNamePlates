@@ -30,11 +30,6 @@ localization/enUS.lua
 localization/esES-esMX.lua
 # --------------------
 
-# Module: DataBase
-database/data.lua
-database/database.lua
-# --------------------
-
 # Module: Configuration
 configuration/builder.lua
 configuration/frames/checkbox.lua
