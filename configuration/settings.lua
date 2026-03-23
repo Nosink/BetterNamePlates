@@ -6,18 +6,18 @@ local defaultFontSize = 9
 local mindefaultFontSize = 6
 
 function ns.settings.IsHealthLabelEnabled()
-    return ns.database.displayHealth
+    return ns.db.displayHealth
 end
 
 function ns.settings.GetHealthFormat()
-    return ns.database.healthFormat
+    return ns.db.healthFormat
 end
 
 function ns.settings.GetFontSize()
-    local fontSize = tonumber(ns.database.fontSize) or defaultFontSize
+    local fontSize = tonumber(ns.db.fontSize) or defaultFontSize
     return max(fontSize or mindefaultFontSize, mindefaultFontSize)
 end
 
 function ns.settings.IsCastLabelEnabled()
-    return ns.database.displayCast
+    return ns.db.displayCast
 end
