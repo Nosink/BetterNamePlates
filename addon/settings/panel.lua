@@ -10,16 +10,14 @@ builder:CreateOptionsPanel()
 builder:CreateTitle(L["OPTIONS_TITLE"])
 
 -- Options
-local healthSection = builder:CreateSection(L["LKEY_OPTIONS_HEALTH_LABEL_TITLE"])
-healthSection:AddCheckBox(L["LKEY_OPTIONS_DISPLAY_HEALTH_CB"], "displayHealth")
-healthSection:AddText(L["LKEY_OPTIONS_HEALTH_FORMAT_DESC1"])
-healthSection:AddText("")
-healthSection:AddEditBox(L["LKEY_OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", { size = 300 })
-healthSection:AddText("")
-healthSection:AddEditBox(L["LKEY_OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", { size = 50 })
+local healthSection = builder:CreateSection(L["OPTIONS_HEALTH_LABEL_TITLE"])
+healthSection:AddCheckBox(L["OPTIONS_DISPLAY_HEALTH_CB"], "displayHealth")
+healthSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"])
+healthSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", { width = 300 })
+healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", { width = 50 })
 
-local castBarSection = builder:CreateSection(L["LKEY_OPTIONS_CAST_LABEL_TITLE"])
-castBarSection:AddCheckBox(L["LKEY_OPTIONS_DISPLAY_CAST_CB"], "displayCast")
+local castBarSection = builder:CreateSection(L["OPTIONS_CAST_LABEL_TITLE"])
+castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_CB"], "displayCast")
 
 -- Register
 builder:Register()

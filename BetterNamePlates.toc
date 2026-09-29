@@ -19,6 +19,8 @@
 
 ## Author: Nosink Ð
 ## Version: 1.4.0
+## IconTexture: Interface\Icons\inv_misc_note_06
+
 ## SavedVariables: BetterNameplatesDB
 
 # Enum
@@ -65,18 +67,18 @@ addon/settings/commands.lua
 
 # Addon - MVC
 # ---------------------
-addon/controller/castLabel.lua
-addon/controller/HealthLabel.lua
-addon/controller/nameplate.lua
-# ---------------------
-addon/model/castLabel.lua
-addon/model/HealthLabel.lua
-addon/model/nameplate.lua
-# ---------------------
-addon/view/castLabel.lua
-addon/view/HealthLabel.lua
-addon/view/nameplate.lua
-# ---------------------
+# addon/controller/castLabel.lua
+# addon/controller/HealthLabel.lua
+# addon/controller/nameplate.lua
+# # ---------------------
+# addon/model/castLabel.lua
+# addon/model/HealthLabel.lua
+# addon/model/nameplate.lua
+# # ---------------------
+# addon/view/castLabel.lua
+# addon/view/HealthLabel.lua
+# addon/view/nameplate.lua
+# # ---------------------
 
 # Addon - Core
 addon.lua
