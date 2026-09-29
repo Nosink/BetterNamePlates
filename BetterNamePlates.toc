@@ -1,58 +1,77 @@
 
 ## Title: BetterNameplates
 
-## Interface: 20505
+## Interface: 20506, 11509
+## Category: Interface Enhancements
 
-## Notes-enUS: Lightweight Anniversary addon that give some extras to the default Nameplates, custom label on nameplate health bar and display casting time on cast bar.
-## Notes-esES: Complemento ligero para el aniversario que le da algunos extras a las placas de nombre predeterminadas, etiqueta personalizada en la barra de salud de la placa de nombre y muestra el tiempo de lanzamiento en la barra de lanzamiento.
-
-## OptionalDeps: LibStub, LibEventBus-1.0, LibSharedVariables-1.0
+## Notes: Lightweight Anniversary addon that give some extras to the default Nameplates, custom label on nameplate health bar and display casting time on cast bar.
+## Notes-enGB: xx
+## Notes-esES: xx
+## Notes-esMX: xx
+## Notes-ruRU: xx
+## Notes-deDE: xx
+## Notes-frFR: xx
+## Notes-itIT: xx
+## Notes-ptBR: xx
+## Notes-koKR: xx
+## Notes-zhCN: xx
+## Notes-zhTW: xx
 
 ## Author: Nosink Ð
-## Version: 1.3.0
+## Version: 1.4.0
 ## SavedVariables: BetterNameplatesDB
 
-# Libraries
-libs/LibStub/LibStub.lua
-libs/LibEventBus-1.0/LibEventBus-1.0.lua
-libs/LibSharedVariables-1.0/LibSharedVariables-1.0.lua
+# Enum
+enum/enum.lua
 
-libs/debug.lua
-libs/utils.lua
+# Events
+event/bus.lua
+
+# Database
+database/database.lua
+
+# Localization
+localization/localization.lua
+
+# Settings
+settings/builder/helper.lua
+settings/builder/panel.lua
+settings/builder/section.lua
+
+# Settings - Frames
+settings/frames/checkbox.lua
+settings/frames/dropDown.lua
+settings/frames/text.lua
+
+# Addon - Database
+addon/defaults.lua
+
+# Addon - Locales
+addon/locales/enUS-enGB.lua
+addon/locales/deDE.lua
+addon/locales/esES-esMX.lua
+addon/locales/frFR.lua
+addon/locales/itIT.lua
+addon/locales/koKR.lua
+addon/locales/ptBR.lua
+addon/locales/ruRU.lua
+addon/locales/zhCN.lua
+addon/locales/zhTW.lua
+
+# Addon - Settings
+addon/settings/panel.lua
+addon/settings/commands.lua
+
+# Addon - MVC
+# ---------------------
+addon/controller/unit.lua
+# ---------------------
+addon/model/unit.lua
+# ---------------------
+addon/view/itemLevel.lua
+addon/view/itemBorder.lua
+addon/view/itemDurability.lua
+# ---------------------
 
 # Addon - Core
 addon.lua
-database.lua
-
-# Module: Localization
-localization/localization.lua
-localization/enUS.lua
-localization/esES-esMX.lua
-# --------------------
-
-# Module: Configuration
-configuration/builder.lua
-configuration/frames/checkbox.lua
-configuration/frames/editbox.lua
-configuration/frames/slider.lua
-configuration/frames/text.lua
-# --------------------
-configuration/panel.lua
-configuration/commands.lua
-configuration/settings.lua
-# --------------------
-
-# MVC Nameplates Color 
-model/nameplate.lua
-view/nameplate.lua
-controller/nameplate.lua
-
-# MVC Health Label
-model/healthLabel.lua
-view/healthLabel.lua
-controller/healthLabel.lua
-
-# MVC Cast Label
-model/castLabel.lua
-view/castLabel.lua
-controller/castLabel.lua
