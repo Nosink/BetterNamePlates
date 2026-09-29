@@ -65,13 +65,17 @@ addon/settings/commands.lua
 
 # Addon - MVC
 # ---------------------
-addon/controller/unit.lua
+addon/controller/castLabel.lua
+addon/controller/HealthLabel.lua
+addon/controller/nameplate.lua
 # ---------------------
-addon/model/unit.lua
+addon/model/castLabel.lua
+addon/model/HealthLabel.lua
+addon/model/nameplate.lua
 # ---------------------
-addon/view/itemLevel.lua
-addon/view/itemBorder.lua
-addon/view/itemDurability.lua
+addon/view/castLabel.lua
+addon/view/HealthLabel.lua
+addon/view/nameplate.lua
 # ---------------------
 
 # Addon - Core
