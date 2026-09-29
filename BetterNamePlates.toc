@@ -41,6 +41,7 @@ settings/builder/section.lua
 # Settings - Frames
 settings/frames/checkbox.lua
 settings/frames/dropDown.lua
+settings/frames/editBox.lua
 settings/frames/text.lua
 
 # Addon - Database
