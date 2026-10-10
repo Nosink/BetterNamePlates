@@ -86,7 +86,7 @@ addon/settings/commands.lua
 # ---------------------
 # addon/controller/castLabel.lua
 # addon/controller/HealthLabel.lua
-# addon/controller/nameplate.lua
+addon/controller/nameplate.lua
 # # ---------------------
 # addon/model/castLabel.lua
 # addon/model/HealthLabel.lua

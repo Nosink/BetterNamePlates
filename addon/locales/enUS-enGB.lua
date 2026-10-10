@@ -2,12 +2,12 @@ local name, ns = ...
 local L = ns.L
 
 L["TITLE_SETUP"] = "Better Name Plates"
-L["MESSAGE_RELOAD"] = "First time setup detected.\nPlease configure the UI."
-L["BUTTON_RELOAD"] = "Configure UI"
 
 L["OPTIONS_TITLE"] = "Better Name Plates"
 
 L["OPTIONS_HEALTH_LABEL_TITLE"] = "Health Bar"
+L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Color nameplates based on class"
+L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Color enemy nameplates based on class"
 L["OPTIONS_DISPLAY_HEALTH_CB"] = "Display custom text on health bar"
 L["OPTIONS_HEALTH_FORMAT_DESC1"] = ""
     .. " · %NAME%       - Unit Name\n"
