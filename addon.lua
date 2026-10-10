@@ -1,19 +1,5 @@
 local name, ns = ...
 
-function ns:GetNamePlate(unitToken)
-    local nameplate = C_NamePlate.GetNamePlateForUnit(unitToken)
-    if not nameplate then return end
-    return nameplate
-end
-
-function ns:GetAllNameplates()
-    local nameplates = {}
-    for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
-        table.insert(nameplates, nameplate)
-    end
-    return nameplates
-end
-
 local function onLoad()
     ns.bus:TriggerEvent(name .. "_VARIABLES_LOADED")
 end

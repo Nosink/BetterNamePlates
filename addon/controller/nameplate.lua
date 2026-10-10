@@ -1,25 +1,26 @@
 local name, ns = ...
 
-local function onVariablesLoaded(_)
-    C_CVar.SetCVar("nameplateShowFriendlyClassColor", "1")
-    C_CVar.SetCVar("nameplateShowClassColor", "1")
+local function updateNamePlatesColor()
+    C_CVar.SetCVar("nameplateShowFriendlyClassColor", tostring(ns.db.coloredNameplates))
+    C_CVar.SetCVar("nameplateShowClassColor", tostring(ns.db.enemyColoredNameplates))
 end
---
--- local function onEnableCvarRequested(_)
---     SetCVar("ShowClassColorInFriendlyNameplate", "1")
---     ReloadUI()
--- end
---
--- local function onNamePlateAdded(_, unitToken)
---     ns.bus:TriggerEvent(name .. "_NAME_PLATE_ADDED", unitToken)
--- end
---
--- local function onNamePlateRemoved(_, unitToken)
---     ns.bus:TriggerEvent(name .. "_NAME_PLATE_REMOVED", unitToken)
--- end
---
+local function setFirstLoad()
+    ns.db.isFirstLoad = false
+end
+
+local function onVariablesLoaded(_)
+    if not ns.db.isFirstLoad then return end
+
+    setFirstLoad()
+    updateNamePlatesColor()
+end
+
 ns.bus:RegisterEvent(name .. "_VARIABLES_LOADED", onVariablesLoaded)
--- ns.bus:RegisterEvent(name .. "_ENABLE_CVAR_REQUEST", onEnableCvarRequested)
---
--- ns.bus:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
--- ns.bus:RegisterEvent("NAME_PLATE_UNIT_REMOVED", onNamePlateRemoved)
+
+local function onSettingsChanged(_, key)
+    if (key == "coloredNameplates" or key == "enemyColoredNameplates") then
+        updateNamePlatesColor()
+    end
+end
+
+ns.bus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)

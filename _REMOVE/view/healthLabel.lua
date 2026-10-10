@@ -1,16 +1,5 @@
 local name, ns = ...
 
-local settings = ns.settings
-
-local function applyFontSize(namePlate)
-    local healthLabel = namePlate.UnitFrame.healthLabel
-    if not healthLabel then return end
-
-    local fontSize = settings.GetFontSize()
-    local fontName, _, fontFlags = healthLabel:GetFont()
-
-    healthLabel:SetFont(fontName, fontSize, fontFlags)
-end
 
 local function onHealthLabelUpdateRequest(_, unitToken, text)
     local namePlate = ns:GetNamePlate(unitToken)

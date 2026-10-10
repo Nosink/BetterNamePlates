@@ -37,7 +37,7 @@ end
 
 local function setEditBoxText(key)
     local value = ns.db and ns.db[key]
-    editBox:SetText(value == nil and "" or tostring(value))
+    editBox:SetText(tostring(value))
 end
 
 local function setEvents(key)
@@ -62,9 +62,8 @@ local function setSize(params)
 end
 
 local function setFetch(key)
-    editBox.Fetch = function(self)
-        local currentValue = ns.db[key]
-        self:SetText(currentValue == nil and "" or tostring(currentValue))
+    editBox.Fetch = function()
+        setEditBoxText(key)
     end
 end
 

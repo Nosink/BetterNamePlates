@@ -90,11 +90,11 @@ addon/controller/nameplate.lua
 # # ---------------------
 # addon/model/castLabel.lua
 # addon/model/HealthLabel.lua
-# addon/model/nameplate.lua
+addon/model/nameplate.lua
 # # ---------------------
 # addon/view/castLabel.lua
 # addon/view/HealthLabel.lua
-# addon/view/nameplate.lua
+addon/view/nameplate.lua
 # # ---------------------
 
 # Addon - Core
