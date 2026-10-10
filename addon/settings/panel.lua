@@ -12,9 +12,15 @@ builder:CreateTitle(L["OPTIONS_TITLE"])
 -- Options
 local healthSection = builder:CreateSection(L["OPTIONS_HEALTH_LABEL_TITLE"])
 healthSection:AddCheckBox(L["OPTIONS_DISPLAY_HEALTH_CB"], "displayHealth")
-healthSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"], { justify = "LEFT" })
-healthSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", { width = 300 })
-healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", { width = 50 })
+healthSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"])
+healthSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", {
+    width = 300,
+    textPoint = ns.builder.point("TOPLEFT", healthSection.anchor, "BOTTOMLEFT", 0, -15)
+})
+healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", {
+    width = 50,
+    textPoint = ns.builder.point("TOPLEFT", healthSection.anchor, "BOTTOMLEFT", 0, -10)
+})
 
 local castBarSection = builder:CreateSection(L["OPTIONS_CAST_LABEL_TITLE"])
 castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_CB"], "displayCast")
