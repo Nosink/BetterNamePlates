@@ -7,6 +7,7 @@ local function getFormattedText(unitToken)
 
     local text = ns.db.healthFormat or "%PERCENT1%"
 
+    local name = UnitName(unitToken)
     local health = UnitHealth(unitToken)
     local maxHealth = UnitHealthMax(unitToken)
     local rawHealthPercent = UnitHealthPercent(unitToken)
@@ -20,6 +21,7 @@ local function getFormattedText(unitToken)
     local missing = UnitHealthMissing(unitToken)
     local deficit = missing ~= 0 and "-" .. tostring(missing) or ""
 
+    text = text:gsub("%%NAME%%", name)
     text = text:gsub("%%PERCENT%%", healthPercent)
     text = text:gsub("%%PERCENT1%%", healthPercent)
     text = text:gsub("%%PERCENT2%%", healthPercent)
