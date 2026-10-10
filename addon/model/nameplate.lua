@@ -3,30 +3,30 @@ local name, ns = ...
 local includeForbidden = false
 
 local function getFormattedText(unitToken)
-    if not ns.db.displayHealth then return "NO HEALTH" end
+    if not ns.db.displayHealth then return "" end
 
     local text = ns.db.healthFormat or "%PERCENT1%"
 
-    local name = UnitName(unitToken)
     local health = UnitHealth(unitToken)
     local maxHealth = UnitHealthMax(unitToken)
+    local rawHealthPercent = UnitHealthPercent(unitToken)
+    local percentPoint = "%.0f"
+    if (ns.db.healthFormat:find("%%PERCENT1%%")) then
+        percentPoint = "%.1f"
+    elseif (ns.db.healthFormat:find("%%PERCENT2%%")) then
+        percentPoint = "%.2f"
+    end
+    local healthPercent = string.format(percentPoint, rawHealthPercent * 100) .. "%%"
+    local missing = UnitHealthMissing(unitToken)
+    local deficit = missing ~= 0 and "-" .. tostring(missing) or ""
 
-    local healthPercent = math.floor((health / maxHealth) * 100)
-    local firstDecimal = math.floor(((health / maxHealth) * 1000) % 10)
-    local secondDecimal = math.floor(((health / maxHealth) * 10000) % 10)
+    text = text:gsub("%%PERCENT%%", healthPercent)
+    text = text:gsub("%%PERCENT1%%", healthPercent)
+    text = text:gsub("%%PERCENT2%%", healthPercent)
 
-    text = text:gsub("%%NAME%%", tostring(name))
-    text = text:gsub("%%PERCENT%%", tostring(healthPercent) .. "%%")
-    text = text:gsub("%%PERCENT1%%", tostring(healthPercent) .. "." .. tostring(firstDecimal) .. "%%")
-    text = text:gsub("%%PERCENT2%%",
-        tostring(healthPercent) .. "." .. tostring(firstDecimal) .. tostring(secondDecimal) .. "%%")
-
-    local deficit = health - maxHealth
-    local deficitStr = deficit ~= 0 and tostring(deficit) or ""
-
-    text = text:gsub("%%DEFICIT%%", deficitStr)
-    text = text:gsub("%%CURRENT%%", tostring(health))
-    text = text:gsub("%%MAX%%", tostring(maxHealth))
+    text = text:gsub("%%CURRENT%%", health)
+    text = text:gsub("%%MAX%%", maxHealth)
+    text = text:gsub("%%MISSING%%", deficit)
 
     return text
 end
@@ -52,7 +52,7 @@ local function createHealthLabel(nameplate)
     healthLabel:SetTextColor(1, 1, 1, 1)
 
     healthLabel.UpdateText = function(self)
-        local text = getFormattedText(nameplate.namePlateUnitToken)
+        local text = getFormattedText(nameplate.unitToken)
         self:SetText(text)
         self:Show();
     end

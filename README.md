@@ -17,6 +17,10 @@ Lightweight Anniversary addon that give some extras to the default Nameplates, c
 	- Modify the font size for this health label (Min 6)
 	- Enable or disable the casting time on cast bar (nameplate only)
 
+	On WoW 12.0 and newer, protected health values may be returned as secret values
+	during restricted gameplay. The health label displays `?` for tokens that cannot
+	be safely read or formatted by addon code.
+
 ## Features
 - Class-colored friendly player nameplates.
 - Lightweight health label with customizable format.
