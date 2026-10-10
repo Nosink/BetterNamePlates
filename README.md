@@ -1,4 +1,4 @@
-# BetterNameplates
+# BetterNamePlates
 
 Lightweight Anniversary addon that give some extras to the default Nameplates, custom label on nameplate health bar and display casting time on cast bar.
 

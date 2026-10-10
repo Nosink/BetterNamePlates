@@ -1,5 +1,5 @@
 
-## Title: BetterNameplates
+## Title: BetterNamePlates
 
 ## Interface: 120100, 50504, 40402, 30405, 20506, 11509
 
@@ -34,8 +34,8 @@
 
 ## IconTexture: Interface\Icons\inv_misc_note_06
 
-## SavedVariables: BetterNameplatesDB
-## SavedVariablesPerCharacter: BetterNameplatesDBPC
+## SavedVariables: BetterNamePlatesDB
+## SavedVariablesPerCharacter: BetterNamePlatesDBPC
 
 # Enum
 enum/enum.lua
