@@ -4,13 +4,13 @@ local enums = ns.enums
 local includeForbidden = false
 
 local function getFormattedText(unitToken)
-    if not ns.db.displayHealth then return "" end
+    if ns.db.displayHealth == "0" then return "" end
 
     local isPlayer = UnitIsPlayer(unitToken)
     local isNeutral = UnitReaction(unitToken, "player") > enums.reaction.NEUTRAL
 
-    if not ns.db.displayOnNPCS and isNeutral and not isPlayer then return "" end
-    if not ns.db.displayOnPlayers and isPlayer then return "" end
+    if ns.db.displayHealth == "1" and isNeutral and not isPlayer then return "" end
+    if ns.db.displayHealth == "2" and isPlayer then return "" end
 
     local text = ns.db.healthFormat or "%PERCENT1%"
 

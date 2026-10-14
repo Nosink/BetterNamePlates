@@ -13,10 +13,13 @@ builder:CreateTitle(L["OPTIONS_TITLE"])
 local healthSection = builder:CreateSection(L["OPTIONS_HEALTH_LABEL_TITLE"])
 healthSection:AddCheckBox(L["OPTIONS_COLORED_NAMEPLATES_CB"], "coloredNameplates")
 healthSection:AddCheckBox(L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"], "enemyColoredNameplates")
-healthSection:AddCheckBox(L["OPTIONS_HEALTH_LABEL_FOR_NEUTRAL"], "displayOnNPCS")
-healthSection:AddCheckBox(L["OPTIONS_HEALTH_LABEL_FOR_PLAYERS"], "displayOnPlayers")
-healthSection:AddCheckBox(L["OPTIONS_DISPLAY_HEALTH_CB"], "displayHealth")
-healthSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"])
+healthSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealth", {
+    { text = "NONE",           value = "0" },
+    { text = "only players",   value = "1" },
+    { text = "only npcs",      value = "2" },
+    { text = "players & npcs", value = "3" },
+}, { width = 100 })
+healthSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"], { offset = { x = 0, y = -5 } })
 healthSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", { width = 300 })
 healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
     { width = 50, isNumeric = true, validator = builder.inRangeValidator(6, 48) })
