@@ -55,6 +55,7 @@ localization/localization.lua
 settings/builder/helper.lua
 settings/builder/panel.lua
 settings/builder/section.lua
+settings/builder/validators.lua
 
 # Settings - Frames
 settings/frames/checkbox.lua

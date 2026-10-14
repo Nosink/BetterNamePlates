@@ -16,7 +16,8 @@ healthSection:AddCheckBox(L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"], "enemyColore
 healthSection:AddCheckBox(L["OPTIONS_DISPLAY_HEALTH_CB"], "displayHealth")
 healthSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"])
 healthSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", { width = 300 })
-healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize", { width = 50, isNumeric = true })
+healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
+    { width = 50, isNumeric = true, validator = builder.inRangeValidator(6, 48) })
 
 local castBarSection = builder:CreateSection(L["OPTIONS_CAST_LABEL_TITLE"])
 castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_CB"], "displayCast")

@@ -2,20 +2,6 @@ local name, ns = ...
 
 local settings = ns.settings
 
-local function getCastInfo(unitToken)
-    local name, _, _, startTimeMs, endTimeMs = UnitCastingInfo(unitToken)
-    if not name then
-        name, _, _, startTimeMs, endTimeMs = UnitChannelInfo(unitToken)
-    end
-    if not name then return "" end
-
-    local currentTime = GetTime() * 1000
-    local duration = endTimeMs - startTimeMs
-    local elapsed = currentTime - startTimeMs
-
-    return string.format("%.1f/%.1f", elapsed / 1000, duration / 1000)
-end
-
 local function clearTicker(namePlate)
     if namePlate.castBarTicker then
         namePlate.castBarTicker:Cancel()

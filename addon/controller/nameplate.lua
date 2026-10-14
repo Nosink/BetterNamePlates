@@ -17,6 +17,7 @@ end
 
 ns.bus:RegisterEvent(name .. "_VARIABLES_LOADED", onVariablesLoaded)
 
+
 local function onSettingsChanged(_, key)
     if (key == "coloredNameplates" or key == "enemyColoredNameplates") then
         updateNamePlatesColor()

@@ -33,18 +33,67 @@ local function getFormattedText(unitToken)
     return text
 end
 
+local function getCastInfo(unitToken)
+    local name, _, _, startTimeMs, endTimeMs = UnitCastingInfo(unitToken)
+    if not name then
+        name, _, _, startTimeMs, endTimeMs = UnitChannelInfo(unitToken)
+    end
+    if not name then return "" end
+
+    local currentTime = GetTime() * 1000
+    local duration = endTimeMs - startTimeMs
+    local elapsed = currentTime - startTimeMs
+
+    return name -- string.format("%.1f/%.1f", elapsed / 1000, duration / 1000)
+end
+
+local function createCastLabel(nameplate)
+    if nameplate.UnitFrame.CastLabel then return end
+
+    local castBar = nameplate.UnitFrame.CastBarsContainer.castBar
+    if not castBar then return end
+
+    local labelFrame = CreateFrame("Frame", nil, nameplate.UnitFrame.CastBarsContainer)
+    labelFrame:SetAllPoints(castBar)
+    labelFrame:SetFrameStrata("HIGH")
+
+    local castLabel = labelFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+    castLabel:SetPoint("RIGHT", castBar, "RIGHT", -5, 0)
+
+    local file, _, flags = castLabel:GetFont()
+    castLabel:SetFont(tostring(file), 10, flags)
+
+    castLabel:SetJustifyV("MIDDLE")
+    castLabel:SetJustifyH("RIGHT")
+    castLabel:SetTextColor(1, 1, 1, 1)
+    local text = getCastInfo(nameplate.unitToken)
+    castLabel:SetText(text)
+
+    castLabel:Hide()
+
+    nameplate.UnitFrame.CastLabel = castLabel
+
+    ns.bus:HookScript(nameplate.UnitFrame.CastBarsContainer.castBar, "OnShow", function()
+        nameplate.UnitFrame.CastLabel:Show()
+    end)
+
+    ns.bus:HookScript(nameplate.UnitFrame.CastBarsContainer.castBar, "OnHide", function()
+        nameplate.UnitFrame.CastLabel:Hide()
+    end)
+end
+
 local function createHealthLabel(nameplate)
     if nameplate.UnitFrame.HealthLabel then return end
 
     local healthBar = nameplate.UnitFrame.healthBar
     if not healthBar then return end
 
-    local healthLabel = healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 1, 0)
+    local healthLabel = healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalOutline")
+    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 5, -1)
 
     healthLabel.UpdateFontSize = function(self)
         local file, _, flags = self:GetFont()
-        self:SetFont(tostring(file), 10, flags)
+        self:SetFont(tostring(file), tonumber(ns.db.fontSize), flags)
     end
 
     healthLabel:UpdateFontSize()
@@ -64,12 +113,30 @@ local function createHealthLabel(nameplate)
     nameplate.UnitFrame.HealthLabel = healthLabel
 end
 
+local function getNameplate(unitToken)
+    return C_NamePlate.GetNamePlateForUnit(unitToken, includeForbidden)
+end
+
 local function onNamePlateAdded(_, unitToken)
-    local nameplate = C_NamePlate.GetNamePlateForUnit(unitToken, includeForbidden)
+    local nameplate = getNameplate(unitToken)
+    if not nameplate then
+        print("Nameplate not found for unit: " .. unitToken)
+        return
+    end
 
     createHealthLabel(nameplate)
+    createCastLabel(nameplate)
 
     ns.bus:TriggerEvent(name .. "_NAME_PLATE_READY", nameplate)
 end
 
 ns.bus:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+
+local function onUnitHealth(_, unitToken)
+    local nameplate = getNameplate(unitToken)
+    if not nameplate then return end
+
+    ns.bus:TriggerEvent(name .. "_UPDATE_HEALTH", nameplate)
+end
+
+ns.bus:RegisterEvent("UNIT_HEALTH", onUnitHealth)
