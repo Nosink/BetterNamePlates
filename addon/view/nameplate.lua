@@ -32,7 +32,7 @@ local function onSettingsChanged(_, key)
             updateFontSize(nameplate)
         end
     end
-    if (key == "healthFormat") then
+    if (key == "healthFormat" or key == "displayOnNPCS" or key == "displayOnPlayers" or key == "displayHealth") then
         for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
             updateHealthText(nameplate)
         end

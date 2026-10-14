@@ -8,6 +8,8 @@ local defaults = {
     enemyColoredNameplates = true,
 
     displayHealth = true,
+    displayOnNPCS = false,
+    displayOnPlayers = true,
     healthFormat = "%PERCENT1%",
     fontSize = 10,
 

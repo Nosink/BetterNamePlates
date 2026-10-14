@@ -1,9 +1,16 @@
 local name, ns = ...
 
+local enums = ns.enums
 local includeForbidden = false
 
 local function getFormattedText(unitToken)
     if not ns.db.displayHealth then return "" end
+
+    local isPlayer = UnitIsPlayer(unitToken)
+    local isNeutral = UnitReaction(unitToken, "player") > enums.reaction.NEUTRAL
+
+    if not ns.db.displayOnNPCS and isNeutral and not isPlayer then return "" end
+    if not ns.db.displayOnPlayers and isPlayer then return "" end
 
     local text = ns.db.healthFormat or "%PERCENT1%"
 
@@ -89,7 +96,7 @@ local function createHealthLabel(nameplate)
     if not healthBar then return end
 
     local healthLabel = healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalOutline")
-    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 5, -1)
+    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 2, 0)
 
     healthLabel.UpdateFontSize = function(self)
         local file, _, flags = self:GetFont()

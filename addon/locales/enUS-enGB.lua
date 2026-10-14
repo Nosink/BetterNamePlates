@@ -17,6 +17,7 @@ L["OPTIONS_HEALTH_FORMAT_DESC1"] = ""
     .. " · %CURRENT%  - Current Health (7489)\n"
     .. " · %MISSING%     - Missing Health (-211)\n"
     .. " · %MAX%         - Maximum Health (7700)"
+L["OPTIONS_HEALTH_LABEL_FOR_NEUTRAL"] = "Display health text for neutral units"
 L["OPTIONS_HEALTH_FORMAT_EB"] = "Format"
 L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"] = "Font Size (Min 6)"
 
