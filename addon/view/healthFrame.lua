@@ -28,12 +28,14 @@ local function createHealthLabel(nameplate)
     nameplate.UnitFrame.HealthLabel = healthLabel
 end
 
-local function onUnitHealthChanged(_, nameplate, text)
-    if not nameplate.UnitFrame.HealthLabel then
-        createHealthLabel(nameplate)
-    else
-        nameplate.UnitFrame.HealthLabel:UpdateText(text)
-    end
+local function onNamePlateUnitAdded(_, nameplate)
+    createHealthLabel(nameplate)
 end
 
+local function onUnitHealthChanged(_, nameplate, text)
+    if not nameplate.UnitFrame.HealthLabel then return end
+    nameplate.UnitFrame.HealthLabel:UpdateText(text)
+end
+
+ns.bus:RegisterEvent(name .. "_NAME_PLATE_UNIT_ADDED", onNamePlateUnitAdded)
 ns.bus:RegisterEvent(name .. "_UPDATE_NAMEPLATE_HEALTH", onUnitHealthChanged)

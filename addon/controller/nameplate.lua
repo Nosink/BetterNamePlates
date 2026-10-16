@@ -27,6 +27,13 @@ local function onUnitHealth(_, unitToken)
     ns.bus:TriggerEvent(name .. "_UNIT_HEALTH", unitToken, nameplate)
 end
 
+local function onNamePlateAdded(_, unitToken)
+    local nameplate = getNameplate(unitToken)
+    ns.bus:TriggerEvent(name .. "_NAME_PLATE_UNIT_ADDED", nameplate)
+end
+
+ns.bus:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+
 ns.bus:RegisterEvent(name .. "_VARIABLES_LOADED", onVariablesLoaded)
 ns.bus:RegisterEvent("UNIT_HEALTH", onUnitHealth)
 ns.bus:RegisterEvent("UNIT_HEALTH_FREQUENT", onUnitHealth)

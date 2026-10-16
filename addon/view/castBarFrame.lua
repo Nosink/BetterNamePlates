@@ -1,9 +1,5 @@
 local name, ns = ...
 
-local enums = ns.enums
-local includeForbidden = false
-
-
 local function getCastInfo(unitToken)
     local name, displayName, textureID, startTimeMs, endTimeMs, isTradeskill, castID, notInterruptible, castingSpellID, castBarID, delayTimeMs =
         UnitCastingInfo(unitToken)
@@ -105,14 +101,8 @@ local function createCastLabelTime(nameplate)
 end
 
 
-
-local function onNamePlateAdded(_, unitToken)
-    local nameplate = getNameplate(unitToken)
-    if not nameplate then return end
-
+local function onNamePlateUnitAdded(_, nameplate)
     createCastLabelTime(nameplate)
-
-    ns.bus:TriggerEvent(name .. "_NAME_PLATE_READY", nameplate)
 end
 
-ns.bus:RegisterEvent("NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+ns.bus:RegisterEvent(name .. "_NAME_PLATE_UNIT_ADDED", onNamePlateUnitAdded)
