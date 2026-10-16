@@ -1,41 +1,67 @@
 local name, ns = ...
 
-local function createHealthLabel(nameplate)
-    if nameplate.UnitFrame.HealthLabel then return end
+local frame = {}
+local label = {}
 
-    local healthBar = nameplate.UnitFrame.healthBar
-    if not healthBar then return end
+local function createFrame(healthBar)
+    frame = CreateFrame("Frame", nil, healthBar)
+    frame:SetPoint("TOPLEFT", healthBar, "TOPLEFT", 0, 0)
+    frame:SetPoint("BOTTOMRIGHT", healthBar, "BOTTOMRIGHT", 0, 0)
+    frame:SetClipsChildren(true)
+end
 
-    local healthLabel = healthBar:CreateFontString(nil, "OVERLAY", "GameFontNormalOutline")
-    healthLabel:SetPoint("LEFT", healthBar, "LEFT", 2, 0)
+local function createLabel(text)
+    label = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalOutline")
+    label:SetPoint("LEFT", frame, "LEFT", 1, 0)
 
-    healthLabel.UpdateFontSize = function(self)
+    label:SetTextColor(1, 1, 1, 1)
+    label:SetJustifyV("MIDDLE")
+    label:SetJustifyH("LEFT")
+    label:SetWordWrap(true)
+
+    label.UpdateFontSize = function(self)
         local file, _, flags = self:GetFont()
         self:SetFont(tostring(file), tonumber(ns.db.fontSize), flags)
     end
+    label:UpdateFontSize()
 
-    healthLabel:UpdateFontSize()
-
-    healthLabel:SetJustifyV("MIDDLE")
-    healthLabel:SetJustifyH("LEFT")
-    healthLabel:SetTextColor(1, 1, 1, 1)
-
-    healthLabel.UpdateText = function(self, text)
+    label.UpdateText = function(self, text)
         self:SetText(text)
         self:Show();
     end
-
-    nameplate.UnitFrame.HealthLabel = healthLabel
+    label:UpdateText(text)
 end
 
-local function onNamePlateUnitAdded(_, nameplate)
-    createHealthLabel(nameplate)
+local function isNotValidNameplate(nameplate)
+    return nameplate.HealthLabel or not nameplate.UnitFrame.healthBar
+end
+
+local function initialize(nameplate, text)
+    if isNotValidNameplate(nameplate) then return end
+
+    createFrame(nameplate.UnitFrame.healthBar)
+    createLabel(text)
+
+    nameplate.HealthLabel = label
+end
+
+local function isNotInitialized(nameplate)
+    return not nameplate.HealthLabel
 end
 
 local function onUnitHealthChanged(_, nameplate, text)
-    if not nameplate.UnitFrame.HealthLabel then return end
-    nameplate.UnitFrame.HealthLabel:UpdateText(text)
+    if isNotInitialized(nameplate) then
+        initialize(nameplate, text)
+    else
+        nameplate.HealthLabel:UpdateText(text)
+    end
 end
 
-ns.bus:RegisterEvent(name .. "_NAME_PLATE_UNIT_ADDED", onNamePlateUnitAdded)
+local function onNamePlateHealthSizeChanged(_, nameplate)
+    if isNotInitialized(nameplate) then return end
+
+    nameplate.HealthLabel:UpdateFontSize()
+end
+
 ns.bus:RegisterEvent(name .. "_UPDATE_NAMEPLATE_HEALTH", onUnitHealthChanged)
+ns.bus:RegisterEvent(name .. "_UPDATE_NAMEPLATE_HEALTH_SIZE", onNamePlateHealthSizeChanged)

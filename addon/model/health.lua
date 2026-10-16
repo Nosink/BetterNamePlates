@@ -39,9 +39,25 @@ local function getFormattedText(unitToken)
     return text
 end
 
-local function onUnitHealth(_, unitToken, nameplate)
-    local text = getFormattedText(unitToken)
+local function updateHealthText(_, nameplate)
+    local text = getFormattedText(nameplate.unitToken)
     ns.bus:TriggerEvent(name .. "_UPDATE_NAMEPLATE_HEALTH", nameplate, text)
 end
 
-ns.bus:RegisterEvent(name .. "_UNIT_HEALTH", onUnitHealth)
+ns.bus:RegisterEvent(name .. "_UNIT_HEALTH", updateHealthText)
+ns.bus:RegisterEvent(name .. "_NAME_PLATE_UNIT_ADDED", updateHealthText)
+
+local function onSettingsChanged(_, key)
+    if (key == "fontSize") then
+        for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
+            ns.bus:TriggerEvent(name .. "_UPDATE_NAMEPLATE_HEALTH_SIZE", nameplate)
+        end
+    end
+    if (key == "healthFormat" or key == "displayHealth") then
+        for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
+            updateHealthText(_, nameplate)
+        end
+    end
+end
+
+ns.bus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)

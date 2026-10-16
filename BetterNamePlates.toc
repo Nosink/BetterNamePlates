@@ -92,8 +92,7 @@ addon/model/health.lua
 addon/model/casting.lua
 # # ---------------------
 addon/view/healthFrame.lua
-# addon/view/castLabel.lua
-# addon/view/nameplate.lua
+addon/view/castBarFrame.lua
 # # ---------------------
 
 # Addon - Core
