@@ -12,6 +12,7 @@ local defaults = {
     fontSize = 10,
 
     displayCast = true,
+    displayCastName = true,
 }
 
 local defaultsPC = {

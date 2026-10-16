@@ -25,7 +25,8 @@ healthSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
     { width = 50, isNumeric = true, validator = builder.inRangeValidator(6, 48) })
 
 local castBarSection = builder:CreateSection(L["OPTIONS_CAST_LABEL_TITLE"])
-castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_CB"], "displayCast")
+castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_TIME_CB"], "displayCast")
+castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_NAME_CB"], "displayCastName")
 
 -- Register
 builder:Register()
