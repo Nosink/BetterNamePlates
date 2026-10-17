@@ -45,11 +45,15 @@ end
 
 
 local function isNotValidNameplate(nameplate)
-    return nameplate.CastLabelTime or nameplate.CastLabelName or not nameplate.UnitFrame.CastBarsContainer.castBar
+    local invalid = nameplate.CastLabelTime or nameplate.CastLabelName or
+        not nameplate.UnitFrame.CastBarsContainer.castBar
+    return invalid
 end
 
 local function initialize(nameplate, name, text)
-    if isNotValidNameplate(nameplate) then return end
+    if isNotValidNameplate(nameplate) then
+        return
+    end
 
     createFrame(nameplate.UnitFrame.CastBarsContainer)
     createNameLabel(name)
@@ -61,10 +65,12 @@ end
 
 
 local function isNotInitialized(nameplate)
-    return not nameplate.CastLabelTime or not nameplate.CastLabelName
+    local notInitialized = not nameplate.CastLabelTime or not nameplate.CastLabelName
+    return notInitialized
 end
 
 local function onUpdateCastBar(_, nameplate, name, text)
+    print("onUpdateCastBar called for " .. tostring(nameplate.unitToken) .. ": " .. name .. " - " .. text)
     if isNotInitialized(nameplate) then
         initialize(nameplate, name, text)
     else
@@ -74,6 +80,7 @@ local function onUpdateCastBar(_, nameplate, name, text)
 end
 
 local function onClearCastBar(_, nameplate)
+    print("onClearCastBar called for " .. tostring(nameplate.unitToken))
     onUpdateCastBar(_, nameplate, "", "")
 end
 

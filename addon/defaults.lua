@@ -7,6 +7,8 @@ local defaults = {
     coloredNameplates = true,
     enemyColoredNameplates = true,
 
+    shamanColor = true,
+
     displayHealth = "1",
     healthFormat = "%PERCENT1%",
     fontSize = 10,

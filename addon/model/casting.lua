@@ -19,10 +19,12 @@ local function hookCastBarEvents(nameplate)
             local name, text = getCastInfo(nameplate.unitToken)
             ns.bus:TriggerEvent(name .. "_UPDATE_CAST_BAR", nameplate, name, text)
         end)
+        nameplate.ticker:Invoke()
     end)
 
     ns.bus:HookScript(nameplate.UnitFrame.CastBarsContainer.castBar, "OnHide", function()
         if nameplate.ticker then nameplate.ticker:Cancel() end
+        ns.bus:TriggerEvent(name .. "_CLEAR_CAST_BAR", nameplate)
     end)
 end
 

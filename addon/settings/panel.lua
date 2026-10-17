@@ -13,6 +13,7 @@ builder:CreateTitle(L["OPTIONS_TITLE"])
 local healthSection = builder:CreateSection(L["OPTIONS_HEALTH_LABEL_TITLE"])
 healthSection:AddCheckBox(L["OPTIONS_COLORED_NAMEPLATES_CB"], "coloredNameplates")
 healthSection:AddCheckBox(L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"], "enemyColoredNameplates")
+healthSection:AddCheckBox(L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"], "shamanColor")
 healthSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealth", {
     { text = "NONE",           value = "0" },
     { text = "only players",   value = "1" },
