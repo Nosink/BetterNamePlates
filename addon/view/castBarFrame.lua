@@ -55,7 +55,7 @@ local function initialize(nameplate, name, text)
         return
     end
 
-    createFrame(nameplate.UnitFrame.CastBarsContainer)
+    createFrame(nameplate.UnitFrame.CastBarsContainer.castBar)
     createNameLabel(name)
     createTimeLabel(text)
 
@@ -70,7 +70,6 @@ local function isNotInitialized(nameplate)
 end
 
 local function onUpdateCastBar(_, nameplate, name, text)
-    print("onUpdateCastBar called for " .. tostring(nameplate.unitToken) .. ": " .. name .. " - " .. text)
     if isNotInitialized(nameplate) then
         initialize(nameplate, name, text)
     else
@@ -80,7 +79,6 @@ local function onUpdateCastBar(_, nameplate, name, text)
 end
 
 local function onClearCastBar(_, nameplate)
-    print("onClearCastBar called for " .. tostring(nameplate.unitToken))
     onUpdateCastBar(_, nameplate, "", "")
 end
 
