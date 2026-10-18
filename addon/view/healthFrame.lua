@@ -54,6 +54,8 @@ local function onUnitHealthChanged(_, nameplate, text)
         initialize(nameplate, text)
     else
         nameplate.HealthLabel:UpdateText(text)
+        C_UIColor.GetColors()
+        nameplate.UnitFrame.healthBar.barTexture:SetVertexColor(1, 1, 1, 1)
     end
 end
 

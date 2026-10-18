@@ -13,7 +13,8 @@ end
 
 local function createNameLabel(text)
     nameLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    nameLabel:SetPoint("LEFT", frame, "LEFT", 5, 0)
+    nameLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+    nameLabel:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -(frame:GetWidth() * 0.4), 0)
 
     nameLabel:SetTextColor(1, 1, 1, 1)
     nameLabel:SetJustifyV("MIDDLE")
@@ -29,11 +30,13 @@ end
 
 local function createTimeLabel(text)
     timeLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    timeLabel:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
+    local width = frame:GetWidth()
+    timeLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+    timeLabel:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
 
     timeLabel:SetTextColor(1, 1, 1, 1)
     timeLabel:SetJustifyV("MIDDLE")
-    timeLabel:SetJustifyH("LEFT")
+    timeLabel:SetJustifyH("RIGHT")
     timeLabel:SetWordWrap(true)
 
     timeLabel.UpdateText = function(self, text)
@@ -46,7 +49,7 @@ end
 
 local function isNotValidNameplate(nameplate)
     local invalid = nameplate.CastLabelTime or nameplate.CastLabelName or
-        not nameplate.UnitFrame.CastBarsContainer.castBar
+        not nameplate.UnitFrame or not nameplate.UnitFrame.CastBarsContainer.castBar
     return invalid
 end
 

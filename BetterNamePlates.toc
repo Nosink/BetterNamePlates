@@ -40,6 +40,7 @@
 # Enum
 enum/enum.lua
 # Enum - Data
+enum/data/classType.lua
 enum/data/expansionType.lua
 enum/data/reactionType.lua
 
