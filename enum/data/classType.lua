@@ -1,6 +1,6 @@
 local _, ns = ...
 
-ns.RegisterEnum("class", {
+ns.RegisterEnum("classID", {
     WARRIOR     = 1,
     PALADIN     = 2,
     HUNTER      = 3,

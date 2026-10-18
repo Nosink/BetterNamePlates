@@ -1,5 +1,7 @@
 local name, ns = ...
 
+local enums = ns.enums
+
 local frame = {}
 local label = {}
 
@@ -32,6 +34,19 @@ local function createLabel(text)
     label:UpdateText(text)
 end
 
+local function updateHealthBarColor(nameplate)
+    if (ns.expansion > enums.expansion.CLASSIC) then return end
+
+    local _, _, classId = UnitClass(nameplate.unitToken)
+    if classId ~= enums.classID.SHAMAN then return end
+
+    nameplate.UnitFrame.healthBar.barTexture:SetVertexColor(0.00, 0.44, 0.87)
+end
+
+local function updateHealthLabel(nameplate, text)
+    nameplate.HealthLabel:UpdateText(text)
+end
+
 local function isNotValidNameplate(nameplate)
     return nameplate.HealthLabel or not nameplate.UnitFrame.healthBar
 end
@@ -41,6 +56,8 @@ local function initialize(nameplate, text)
 
     createFrame(nameplate.UnitFrame.healthBar)
     createLabel(text)
+
+    updateHealthBarColor(nameplate)
 
     nameplate.HealthLabel = label
 end
@@ -53,9 +70,8 @@ local function onUnitHealthChanged(_, nameplate, text)
     if isNotInitialized(nameplate) then
         initialize(nameplate, text)
     else
-        nameplate.HealthLabel:UpdateText(text)
-        C_UIColor.GetColors()
-        nameplate.UnitFrame.healthBar.barTexture:SetVertexColor(1, 1, 1, 1)
+        updateHealthLabel(nameplate, text)
+        updateHealthBarColor(nameplate)
     end
 end
 
