@@ -23,10 +23,10 @@ L["OPTIONS_HEALTH_FORMAT_DESC2_1"] = "%PERCENT%"
 L["OPTIONS_HEALTH_FORMAT_DESC2_2"] = "->  Health Percentage (99%)"
 
 L["OPTIONS_HEALTH_FORMAT_DESC3_1"] = "%PERCENT1%"
-L["OPTIONS_HEALTH_FORMAT_DESC3_2"] = "->  decimal point for health Percentage (37.3%)"
+L["OPTIONS_HEALTH_FORMAT_DESC3_2"] = "->  Decimal point for health Percentage (37.3%)"
 
 L["OPTIONS_HEALTH_FORMAT_DESC4_1"] = "%PERCENT2%"
-L["OPTIONS_HEALTH_FORMAT_DESC4_2"] = "->  decimal points for health Percentage (44.12%)"
+L["OPTIONS_HEALTH_FORMAT_DESC4_2"] = "->  Decimal points for health Percentage (44.12%)"
 
 L["OPTIONS_HEALTH_FORMAT_DESC5_1"] = "%CURRENT%"
 L["OPTIONS_HEALTH_FORMAT_DESC5_2"] = "->  Current Health (7489)"

@@ -31,6 +31,8 @@ for i = 1, L["OPTIONS_HEALTH_FORMAT_DESC_COUNT"] do
     local offset = i == 1 and { x = 25, y = -10 } or { x = 0, y = 0 }
     local d1 = healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_1"], {
         width = 100,
+        color = ns.builder.color(0.8, 0.8, 0.8),
+        flags = "OUTLINE",
         textPoint = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y)
     })
     healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_2"], {

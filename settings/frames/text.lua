@@ -15,7 +15,7 @@ local function createFontString(section, params)
 end
 
 local function setText(text, params)
-    local color = params and params.textColor or
+    local color = params and params.color or
         ns.builder.color(1, 1, 1, 1)
     local justifyH = params and params.justify and params.justify.h or
         "LEFT"
