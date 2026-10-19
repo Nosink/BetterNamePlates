@@ -3,4 +3,32 @@ local L = ns.L
 
 if ns.locale == "koKR" then
 
+L["OPTIONS_TITLE"] = "더 나은 이름표"
+L["OPTIONS_HEALTH_LABEL_TITLE"] = "생명력 바"
+L["OPTIONS_COLORED_NAMEPLATES_CB"] = "직업에 따라 이름표 색상 변경"
+L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "직업에 따라 적 이름표 색상 변경"
+L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "직업에 따라 주술사 이름표 색상 변경"
+L["OPTIONS_HEALTH_LABEL_FORMAT_DD"] = "생명력 표시 대상"
+L["HEALTH_FORMAT_NONE"] = "표시 안 함"
+L["HEALTH_FORMAT_ONLY_PLAYERS"] = "플레이어만"
+L["HEALTH_FORMAT_ONLY_NPCS"] = "중립 NPC만"
+L["HEALTH_FORMAT_PLAYERS_AND_NPCS"] = "플레이어 및 중립 NPC"
+L["OPTIONS_HEALTH_FORMAT_DESC1"] = ""
+    .. " · %NAME%       - 유닛 이름\n"
+    .. " · %PERCENT%   - 생명력 백분율 (99%)\n"
+    .. " · %PERCENT1% - 생명력 백분율 소수 첫째 자리 (37.3%)\n"
+    .. " · %PERCENT2% - 생명력 백분율 소수 둘째 자리 (44.12%)\n"
+    .. " · %CURRENT%  - 현재 생명력 (7489)\n"
+    .. " · %MISSING%     - 잃은 생명력 (-211)\n"
+    .. " · %MAX%         - 최대 생명력 (7700)"
+L["OPTIONS_HEALTH_FORMAT_EB"] = "형식"
+L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"] = "글꼴 크기 (최소 6)"
+L["OPTIONS_CAST_LABEL_TITLE"] = "시전바"
+L["OPTIONS_DISPLAY_CAST_TIME_CB"] = "시전바에 시전 시간 표시"
+L["OPTIONS_DISPLAY_CAST_NAME_CB"] = "시전바에 주문 이름 표시"
+L["COMMAND_USE"] = "사용법:"
+L["COMMAND_OR"] = "또는"
+L["COMMAND_DESCRIPTION"] = "설정을 열려면"
+L["COMMAND_VERSION"] = "버전"
+
 end
