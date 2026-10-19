@@ -39,7 +39,7 @@ end
 
 local function setWidth(params)
     local width = params and params.width or
-        label:GetStringWidth()
+        label:GetStringWidth() * 1.1
 
     label:SetWidth(width)
 end

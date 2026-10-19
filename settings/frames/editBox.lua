@@ -15,15 +15,26 @@ local function createLabel(section, text, params)
     label:SetPoint(point.point, point.relativeTo, point.relativePoint, point.x, point.y)
 end
 
-local function setLabelText(text, params)
-    local color = params and params.textColor or
+local function setText(text, params)
+    local color = params and params.color or
         ns.builder.color(1, 1, 1, 1)
-    local size = params and params.size or
-        12
+    local justifyH = params and params.justify and params.justify.h or
+        "LEFT"
+    local justifyV = params and params.justify and params.justify.v or
+        "TOP"
 
-    local file, _, flags = label:GetFont()
-    label:SetFont(tostring(file), size, flags)
+    local filename, fontHeight, flags = label:GetFont()
+    filename = params and params.font or
+        filename
+    fontHeight = params and params.fontHeight or
+        fontHeight
+    flags = params and params.flags or
+        flags
+
+    label:SetFont(tostring(filename), fontHeight, flags)
     label:SetTextColor(color.r, color.g, color.b, color.a)
+    label:SetJustifyH(justifyH)
+    label:SetJustifyV(justifyV)
     label:SetText(text)
 end
 
@@ -40,9 +51,14 @@ local function setSize(params)
         45
     local height = params and params.height or
         22
+    local justifyH = params and params.justify and params.justify.h or
+        "CENTER"
+    local justifyV = params and params.justify and params.justify.v or
+        "MIDDLE"
 
     editBox:SetAutoFocus(false)
-    editBox:SetJustifyH(params and params.justifyH or "CENTER")
+    editBox:SetJustifyH(justifyH)
+    editBox:SetJustifyV(justifyV)
     editBox:SetSize(width, height)
 end
 
@@ -82,7 +98,7 @@ end
 
 function ns.builder.CreateEditBox(section, text, key, params)
     createLabel(section, text, params)
-    setLabelText(text, params)
+    setText(text, params)
 
     createEditBox(section, key, params)
     setSize(params)
