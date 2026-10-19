@@ -35,7 +35,7 @@ local function createLabel(text)
 end
 
 local function updateHealthBarColor(nameplate)
-    if (ns.expansion > enums.expansion.CLASSIC) then return end
+    if ns.expansion > enums.expansion.CLASSIC or not ns.db.coloredNameplates or not ns.db.shamanColor then return end
 
     local _, _, classId = UnitClass(nameplate.unitToken)
     if classId ~= enums.classID.SHAMAN then return end
@@ -71,7 +71,6 @@ local function onUnitHealthChanged(_, nameplate, text)
         initialize(nameplate, text)
     else
         updateHealthLabel(nameplate, text)
-        updateHealthBarColor(nameplate)
     end
 end
 

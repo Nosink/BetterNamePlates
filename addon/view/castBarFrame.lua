@@ -11,10 +11,20 @@ local function createFrame(castBarsContainer)
     frame:SetClipsChildren(true)
 end
 
+local function setNameLabelPoints(label)
+    label:ClearAllPoints()
+    if ns.db.displayCast then
+        label:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+        label:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -frame:GetWidth() * 0.4, 0)
+    else
+        label:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+        label:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
+    end
+end
+
 local function createNameLabel(text)
     nameLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    nameLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
-    nameLabel:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -(frame:GetWidth() * 0.4), 0)
+    setNameLabelPoints(nameLabel)
 
     nameLabel:SetTextColor(1, 1, 1, 1)
     nameLabel:SetJustifyV("MIDDLE")
@@ -22,7 +32,11 @@ local function createNameLabel(text)
     nameLabel:SetWordWrap(true)
 
     nameLabel.UpdateText = function(self, text)
-        self:SetText(text)
+        if ns.db.displayCastName then
+            self:SetText(text)
+        else
+            self:SetText("")
+        end
     end
     nameLabel:UpdateText(text)
     nameLabel:Show()
@@ -40,7 +54,11 @@ local function createTimeLabel(text)
     timeLabel:SetWordWrap(true)
 
     timeLabel.UpdateText = function(self, text)
-        self:SetText(text)
+        if ns.db.displayCast then
+            self:SetText(text)
+        else
+            self:SetText("")
+        end
     end
     timeLabel:UpdateText(text)
     timeLabel:Show()
@@ -87,3 +105,7 @@ end
 
 ns.bus:RegisterEvent(name .. "_CLEAR_CAST_BAR", onClearCastBar)
 ns.bus:RegisterEvent(name .. "_UPDATE_CAST_BAR", onUpdateCastBar)
+ns.bus:RegisterEvent(name .. "_UPDATE_CAST_BAR_SIZE", function(_, nameplate)
+    if isNotInitialized(nameplate) then return end
+    setNameLabelPoints(nameplate.CastLabelName)
+end)

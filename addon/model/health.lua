@@ -53,7 +53,8 @@ local function onSettingsChanged(_, key)
             ns.bus:TriggerEvent(name .. "_UPDATE_NAMEPLATE_HEALTH_SIZE", nameplate)
         end
     end
-    if (key == "healthFormat" or key == "displayHealth") then
+    if (key == "healthFormat" or key == "displayHealth" or key == "shamanColor"
+            or key == "coloredNameplates" or key == "enemyColoredNameplates") then
         for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
             updateHealthText(_, nameplate)
         end

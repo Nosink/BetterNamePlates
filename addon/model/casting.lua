@@ -32,3 +32,13 @@ local function onNamePlateAdded(_, nameplate)
 end
 
 ns.bus:RegisterEvent(name .. "_NAME_PLATE_UNIT_ADDED", onNamePlateAdded)
+
+local function onSettingsChanged(_, key)
+    if (key == "displayCast") then
+        for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
+            ns.bus:TriggerEvent(name .. "_UPDATE_CAST_BAR_SIZE", nameplate)
+        end
+    end
+end
+
+ns.bus:RegisterEvent(name .. "_SETTINGS_CHANGED", onSettingsChanged)
