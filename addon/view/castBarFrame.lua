@@ -32,11 +32,7 @@ local function createNameLabel(text)
     nameLabel:SetWordWrap(true)
 
     nameLabel.UpdateText = function(self, text)
-        if ns.db.displayCastName then
-            self:SetText(text)
-        else
-            self:SetText("")
-        end
+        self:SetText(text)
     end
     nameLabel:UpdateText(text)
     nameLabel:Show()
@@ -54,11 +50,7 @@ local function createTimeLabel(text)
     timeLabel:SetWordWrap(true)
 
     timeLabel.UpdateText = function(self, text)
-        if ns.db.displayCast then
-            self:SetText(text)
-        else
-            self:SetText("")
-        end
+        self:SetText(text)
     end
     timeLabel:UpdateText(text)
     timeLabel:Show()
@@ -100,12 +92,15 @@ local function onUpdateCastBar(_, nameplate, name, text)
 end
 
 local function onClearCastBar(_, nameplate)
-    onUpdateCastBar(_, nameplate, "", "")
+    --onUpdateCastBar(_, nameplate, "", "")
+end
+
+local function onUpdateCastBarSize(_, nameplate)
+    if isNotInitialized(nameplate) then return end
+
+    setNameLabelPoints(nameplate.CastLabelName)
 end
 
 ns.bus:RegisterEvent(name .. "_CLEAR_CAST_BAR", onClearCastBar)
 ns.bus:RegisterEvent(name .. "_UPDATE_CAST_BAR", onUpdateCastBar)
-ns.bus:RegisterEvent(name .. "_UPDATE_CAST_BAR_SIZE", function(_, nameplate)
-    if isNotInitialized(nameplate) then return end
-    setNameLabelPoints(nameplate.CastLabelName)
-end)
+ns.bus:RegisterEvent(name .. "_UPDATE_CAST_BAR_SIZE", onUpdateCastBarSize)

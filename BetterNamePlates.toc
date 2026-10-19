@@ -88,6 +88,7 @@ addon/settings/commands.lua
 # Addon - MVC
 # ---------------------
 addon/controller/nameplate.lua
+addon/controller/unit.lua
 # # ---------------------
 addon/model/health.lua
 addon/model/casting.lua
