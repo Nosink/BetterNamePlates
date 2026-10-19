@@ -1,38 +1,63 @@
 # Changelog
 
+## [1.4.0] - 19/10/2026
+
+### Added
+- Support for Retail and Classic interface versions `50504`, `40402`, `30405`, `20506`, and `11509`.
+- Localized addon metadata and interface text for English, Spanish, German French, Italian, Portuguese, Russian, Korean, Simplified Chinese, and Traditional Chinese.
+- Configurable health-label display for players, NPCs, or both.
+- Configurable health-label font size.
+- Optional enemy nameplate coloring and Shaman color override on Classic.
+
+### Changed
+- Replaced the old configuration and MVC modules with a modular model, view,
+  and controller structure.
+- Moved the addon to the Blizzard Settings UI and added controls for health
+  display, formatting, font size, cast time, and cast name.
+- Replaced the external library layout with the embedded event bus module.
+- Expanded the health-label token support with `%NAME%`, `%PERCENT%`,
+  `%PERCENT1%`, `%PERCENT2%`, `%CURRENT%`, `%MISSING%`, and `%MAX%`.
+
+### Fixed
+- Improved Shaman health-bar color handling on Classic clients.
+- Improved handling of secret values and nameplate lifecycle events.
+
+---
+
 ## [1.3.0] - 09/02/2026
 
 ### Added
-- CastLabel control to display casting or channeling information in cast bar.
+- Cast-label control to display casting or channeling information in the cast bar.
 
 ## Removed
-- Old monolith about fetch class names and re-color bar texture of nameplate `HealthBarsContainer`
+- Old monolith used to fetch class names and recolor the nameplate
+  `HealthBarsContainer`.
 
 ### Fixed
-- NO more crashes on Dungeons.
-	- Control over `FORBIDDEN_NAME_PLATE_···" Events and other namepalte events related.
+- Prevented dungeon crashes by controlling `FORBIDDEN_NAME_PLATE_*` and other
+  nameplate-related events.
 
 ### Changed
-- Forced to use of CVars to improve performance and avoid color refreshing errors
+- Forced use of CVars to improve performance and avoid color-refreshing errors.
  
---- 
+---
 
 ## [1.2.0] - 23/01/2026
-Allow extra customization to health label
+Added extra health-label customization.
 
 ### Added
-- Added edit box to Settings to input the font size for health label
+- Added a Settings edit box for the health-label font size.
 
 ---
 
 ## [1.1.1] - 14/01/2026
-Fixed installation processs
-Added interface support for classic
+- Fixed the installation process.
+- Added Classic interface support.
 
 ---
 
 ## [1.1.0] - 14/01/2026
-Work for TBC
+- Added Burning Crusade Classic support.
 
 ---
 
