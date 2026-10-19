@@ -24,9 +24,23 @@ healthTextSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealt
     { text = L["HEALTH_FORMAT_ONLY_PLAYERS"],     value = "1" },
     { text = L["HEALTH_FORMAT_ONLY_NPCS"],        value = "2" },
     { text = L["HEALTH_FORMAT_PLAYERS_AND_NPCS"], value = "3" },
-}, { width = 100 })
-healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC1"], { offset = { x = 0, y = -5 } })
-healthTextSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat", { width = 300 })
+}, { width = 150 })
+
+local anchor = healthTextSection.anchor
+for i = 1, L["OPTIONS_HEALTH_FORMAT_DESC_COUNT"] do
+    local offset = i == 1 and { x = 25, y = -10 } or { x = 0, y = 0 }
+    local d1 = healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_1"], {
+        width = 100,
+        textPoint = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y)
+    })
+    healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_2"], {
+        textPoint = ns.builder.point("LEFT", d1, "RIGHT")
+    })
+    anchor = d1
+end
+
+healthTextSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat",
+    { width = 300, textPoint = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", -25, -10) })
 healthTextSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
     { width = 50, isNumeric = true, validator = builder.inRangeValidator(6, 48) })
 

@@ -17,25 +17,38 @@ end
 local function setText(text, params)
     local color = params and params.textColor or
         ns.builder.color(1, 1, 1, 1)
-    local size = params and params.size or
-        12
     local justifyH = params and params.justify and params.justify.h or
         "LEFT"
     local justifyV = params and params.justify and params.justify.v or
         "TOP"
 
-    local file, _, flags = label:GetFont()
-    label:SetFont(tostring(file), size, flags)
+    local filename, fontHeight, flags = label:GetFont()
+    filename = params and params.font or
+        filename
+    fontHeight = params and params.fontHeight or
+        fontHeight
+    flags = params and params.flags or
+        flags
+
+    label:SetFont(tostring(filename), fontHeight, flags)
     label:SetTextColor(color.r, color.g, color.b, color.a)
     label:SetJustifyH(justifyH)
     label:SetJustifyV(justifyV)
     label:SetText(text)
 end
 
+local function setWidth(params)
+    local width = params and params.width or
+        label:GetStringWidth()
+
+    label:SetWidth(width)
+end
+
 function ns.builder.CreateText(section, text, params)
     createFontString(section, params)
 
     setText(text, params)
+    setWidth(params)
 
     section:setAnchor(label)
     return label
