@@ -1,26 +1,11 @@
 local name, ns = ...
 
-local LibEventBus = LibStub("LibEventBus-1.0")
-BNPBus = LibEventBus:NewBus("BNPBus", true)
-
-function ns:GetNamePlate(unitToken)
-    local nameplate = C_NamePlate.GetNamePlateForUnit(unitToken)
-    if not nameplate then return end
-    return nameplate
+local function onLoad()
+    ns.bus:TriggerEvent(name .. "_VARIABLES_LOADED")
 end
 
-function ns:GetAllNameplates()
-    local nameplates = {}
-    for _, nameplate in pairs(C_NamePlate.GetNamePlates()) do
-        table.insert(nameplates, nameplate)
-    end
-    return nameplates
+local function onVariablesLoaded(_)
+    ns.database.Load(onLoad)
 end
 
-local function onAddonLoaded(_, addOnName)
-    if addOnName ~= name then return end
-
-    BNPBus:TriggerEvent(name .. "_ADDON_LOADED")
-end
-
-BNPBus:RegisterEvent("ADDON_LOADED", onAddonLoaded)
+ns.bus:RegisterEvent("VARIABLES_LOADED", onVariablesLoaded)

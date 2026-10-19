@@ -1,58 +1,101 @@
 
-## Title: BetterNameplates
+## Title: BetterNamePlates
 
-## Interface: 20505
+## Interface: 50504, 40402, 30405, 20506, 11509
 
-## Notes-enUS: Lightweight Anniversary addon that give some extras to the default Nameplates, custom label on nameplate health bar and display casting time on cast bar.
-## Notes-esES: Complemento ligero para el aniversario que le da algunos extras a las placas de nombre predeterminadas, etiqueta personalizada en la barra de salud de la placa de nombre y muestra el tiempo de lanzamiento en la barra de lanzamiento.
+## Category: Interface Enhancements
+## Category-enGB: Interface Enhancements
+## Category-esES: Mejoras de interfaz
+## Category-esMX: Mejoras de interfaz
+## Category-ruRU: Улучшения интерфейса
+## Category-deDE: Interface-Verbesserungen
+## Category-frFR: Améliorations de l'interface
+## Category-itIT: Miglioramenti dell'interfaccia
+## Category-ptBR: Melhorias de interface
+## Category-koKR: 인터페이스 개선
+## Category-zhCN: 界面增强
+## Category-zhTW: 介面增強
 
-## OptionalDeps: LibStub, LibEventBus-1.0
+## Notes: Lightweight Anniversary addon that give some extras to the default Nameplates, custom label on nameplate health bar and display casting time on cast bar.
+## Notes-enGB: Lightweight Anniversary addon that adds extras to the default nameplates, including a custom health bar label and cast time display.
+## Notes-esES: Complemento ligero para Anniversary que añade funciones a las placas de nombre predeterminadas, como una etiqueta de vida personalizada y la duración del lanzamiento.
+## Notes-esMX: Complemento ligero para Anniversary que añade funciones a las placas de nombre predeterminadas, como una etiqueta de vida personalizada y la duración del lanzamiento.
+## Notes-ruRU: Лёгкий аддон для Anniversary, добавляющий к стандартным полоскам здоровья дополнительные функции, включая пользовательскую надпись здоровья и отображение времени применения заклинаний.
+## Notes-deDE: Ein leichtgewichtiges Anniversary-Addon mit zusätzlichen Funktionen für die Standard-Namensplaketten, darunter eine eigene Lebensanzeige und die Anzeige der Zauberzeit.
+## Notes-frFR: Addon léger pour Anniversary qui ajoute des fonctions aux plaques de nom par défaut, notamment une barre de vie personnalisée et l'affichage du temps d'incantation.
+## Notes-itIT: Addon leggero per Anniversary che aggiunge funzioni alle targhette predefinite, tra cui un'etichetta della salute personalizzata e la visualizzazione del tempo di lancio.
+## Notes-ptBR: Addon leve para Anniversary que adiciona recursos às placas de identificação padrão, incluindo um rótulo de vida personalizado e a exibição do tempo de lançamento.
+## Notes-koKR: 기본 이름표에 사용자 지정 생명력 표시와 시전 시간 표시 기능을 추가하는 가벼운 Anniversary 애드온입니다.
+## Notes-zhCN: 轻量级 Anniversary 插件，为默认姓名板添加自定义生命值标签和施法时间显示等功能。
+## Notes-zhTW: 輕量級 Anniversary 插件，為預設姓名板新增自訂生命值標籤和施法時間顯示等功能。
 
-## Author: Nosink Ð
-## Version: 1.3.0
-## SavedVariables: BetterNameplatesDB
+## Author: Nosink
+## Version: 1.4.0
 
-# Libraries
-libs/LibStub/LibStub.lua
-libs/LibEventBus-1.0/LibEventBus-1.0.lua 
+## IconTexture: Interface\Icons\inv_misc_note_06
+
+## SavedVariables: BetterNamePlatesDB
+## SavedVariablesPerCharacter: BetterNamePlatesDBPC
+
+# Enum
+enum/enum.lua
+# Enum - Data
+enum/data/classType.lua
+enum/data/expansionType.lua
+enum/data/reactionType.lua
+
+# Events
+event/bus.lua
+
+# Database
+database/database.lua
+
+# Localization
+localization/localization.lua
+
+# Settings
+settings/builder/helper.lua
+settings/builder/panel.lua
+settings/builder/section.lua
+settings/builder/validators.lua
+
+# Settings - Frames
+settings/frames/checkbox.lua
+settings/frames/dropDown.lua
+settings/frames/editBox.lua
+settings/frames/slider.lua
+settings/frames/text.lua
+
+# Addon - Database
+addon/defaults.lua
+
+# Addon - Locales
+addon/locales/enUS-enGB.lua
+addon/locales/deDE.lua
+addon/locales/esES-esMX.lua
+addon/locales/frFR.lua
+addon/locales/itIT.lua
+addon/locales/koKR.lua
+addon/locales/ptBR.lua
+addon/locales/ruRU.lua
+addon/locales/zhCN.lua
+addon/locales/zhTW.lua
+
+# Addon - Settings
+addon/settings/panel.lua
+addon/settings/commands.lua
+
+# Addon - MVC
+# ---------------------
+addon/controller/nameplate.lua
+addon/controller/unit.lua
+# # ---------------------
+addon/model/health.lua
+addon/model/casting.lua
+# # ---------------------
+addon/view/healthFrame.lua
+addon/view/castBarFrame.lua
+# # ---------------------
 
 # Addon - Core
 addon.lua
-
-# Module: Localization
-localization/localization.lua
-localization/enUS.lua
-localization/esES-esMX.lua
-# --------------------
-
-# Module: DataBase
-database/data.lua
-database/database.lua
-# --------------------
-
-# Module: Configuration
-configuration/builder.lua
-configuration/frames/checkbox.lua
-configuration/frames/editbox.lua
-configuration/frames/slider.lua
-configuration/frames/text.lua
-# --------------------
-configuration/panel.lua
-configuration/commands.lua
-configuration/settings.lua
-# --------------------
-
-# MVC Nameplates Color 
-model/nameplate.lua
-view/nameplate.lua
-controller/nameplate.lua
-
-# MVC Health Label
-model/healthLabel.lua
-view/healthLabel.lua
-controller/healthLabel.lua
-
-# MVC Cast Label
-model/castLabel.lua
-view/castLabel.lua
-controller/castLabel.lua
