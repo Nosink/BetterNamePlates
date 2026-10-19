@@ -17,6 +17,7 @@ healthSection:AddCheckBox(L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"], "enemyColore
 if (ns.expansion == enums.expansion.CLASSIC) then
     healthSection:AddCheckBox(L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"], "shamanColor")
 end
+
 local healthTextSection = builder:CreateSection(L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"])
 healthTextSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealth", {
     { text = L["HEALTH_FORMAT_NONE"],             value = "0" },
