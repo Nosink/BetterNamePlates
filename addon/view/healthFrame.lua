@@ -41,7 +41,11 @@ local function updateShamanHealthBarColor(nameplate)
     if classId ~= enums.classID.SHAMAN then return end
 
     local r, g, b = nameplate.UnitFrame.healthBar:GetStatusBarColor()
-    if r == 0.00 and g == 0.44 and b == 0.87 then return end
+    if math.abs(r - 0.00) < 0.01
+        and math.abs(g - 0.44) < 0.01
+        and math.abs(b - 0.87) < 0.01 then
+        return
+    end
 
     nameplate.UnitFrame.healthBar:SetStatusBarColor(0.00, 0.44, 0.87)
 end
@@ -51,7 +55,9 @@ local function hookStatusBarSetColor(nameplate)
 
     hooksecurefunc(nameplate.UnitFrame.healthBar, "SetStatusBarColor",
         function(self)
-            local nameplate = self:GetParent():GetParent():GetParent()
+            local healthBarsContainer = self:GetParent()
+            local UnitFrame = healthBarsContainer:GetParent()
+            local nameplate = UnitFrame:GetParent()
             updateShamanHealthBarColor(nameplate)
         end)
 end
