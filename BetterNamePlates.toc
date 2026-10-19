@@ -1,7 +1,7 @@
 
 ## Title: BetterNamePlates
 
-## Interface: 120100, 50504, 40402, 30405, 20506, 11509
+## Interface: 50504, 40402, 30405, 20506, 11509
 
 ## Category: Interface Enhancements
 ## Category-enGB: Interface Enhancements
