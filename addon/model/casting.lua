@@ -9,7 +9,7 @@ local function getCastInfo(unitToken)
     local elapsed = currentTime - startTimeMs
     local timeText = string.format("%.1f/%.1f", elapsed / 1000, duration / 1000);
 
-    return name and ns.db.displayCastName or "", timeText and ns.db.displayCast or ""
+    return ns.db.displayCastName and name or "", ns.db.displayCast and timeText or ""
 end
 
 local function hookCastBarEvents(nameplate)

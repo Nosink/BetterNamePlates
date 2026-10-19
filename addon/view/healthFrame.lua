@@ -34,13 +34,26 @@ local function createLabel(text)
     label:UpdateText(text)
 end
 
-local function updateHealthBarColor(nameplate)
+local function updateShamanHealthBarColor(nameplate)
     if ns.expansion > enums.expansion.CLASSIC or not ns.db.coloredNameplates or not ns.db.shamanColor then return end
 
     local _, _, classId = UnitClass(nameplate.unitToken)
     if classId ~= enums.classID.SHAMAN then return end
 
-    nameplate.UnitFrame.healthBar.barTexture:SetVertexColor(0.00, 0.44, 0.87)
+    local r, g, b = nameplate.UnitFrame.healthBar:GetStatusBarColor()
+    if r == 0.00 and g == 0.44 and b == 0.87 then return end
+
+    nameplate.UnitFrame.healthBar:SetStatusBarColor(0.00, 0.44, 0.87)
+end
+
+local function hookStatusBarSetColor(nameplate)
+    if ns.expansion > enums.expansion.CLASSIC then return end
+
+    hooksecurefunc(nameplate.UnitFrame.healthBar, "SetStatusBarColor",
+        function(self)
+            local nameplate = self:GetParent():GetParent():GetParent()
+            updateShamanHealthBarColor(nameplate)
+        end)
 end
 
 local function updateHealthLabel(nameplate, text)
@@ -57,7 +70,7 @@ local function initialize(nameplate, text)
     createFrame(nameplate.UnitFrame.healthBar)
     createLabel(text)
 
-    updateHealthBarColor(nameplate)
+    hookStatusBarSetColor(nameplate)
 
     nameplate.HealthLabel = label
 end
@@ -71,6 +84,7 @@ local function onUnitHealthChanged(_, nameplate, text)
         initialize(nameplate, text)
     else
         updateHealthLabel(nameplate, text)
+        updateShamanHealthBarColor(nameplate)
     end
 end
 
