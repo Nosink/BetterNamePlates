@@ -10,9 +10,9 @@ L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Color enemy nameplates based on clas
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Color shaman nameplates based on class"
 L["OPTIONS_HEALTH_LABEL_FORMAT_DD"] = "Display health text for"
 L["HEALTH_FORMAT_NONE"] = "None"
-L["HEALTH_FORMAT_ONLY_PLAYERS"] = "Players only"
+L["HEALTH_FORMAT_ONLY_PLAYERS"] = "Enemies and Players only"
 L["HEALTH_FORMAT_ONLY_NPCS"] = "Neutral NPCs only"
-L["HEALTH_FORMAT_PLAYERS_AND_NPCS"] = "Players and neutral NPCs"
+L["HEALTH_FORMAT_PLAYERS_AND_NPCS"] = "All nameplates"
 
 L["OPTIONS_HEALTH_FORMAT_DESC_COUNT"] = 7
 
