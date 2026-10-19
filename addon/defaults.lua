@@ -13,7 +13,7 @@ local defaults = {
     healthFormat = "%PERCENT1%",
     fontSize = 10,
 
- = true,
+    displayCast = true,
     displayCastName = true,
 }
 
