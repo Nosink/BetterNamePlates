@@ -3,7 +3,8 @@ local L = ns.L
 
 L["OPTIONS_TITLE"] = "Better Name Plates"
 
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "Health Bar"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "Health Bar Color"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "Health Bar Text"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Color nameplates based on class"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Color enemy nameplates based on class"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Color shaman nameplates based on class"

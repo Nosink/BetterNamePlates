@@ -4,7 +4,8 @@ local L = ns.L
 if ns.locale == "itIT" then
 
 L["OPTIONS_TITLE"] = "Nome delle targhette migliorati"
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "Barra della salute"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "Colore barra della salute"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "Testo barra della salute"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Colora le targhette in base alla classe"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Colora le targhette nemiche in base alla classe"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Colora le targhette degli sciamani in base alla classe"

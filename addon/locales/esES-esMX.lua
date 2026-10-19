@@ -4,7 +4,8 @@ local L = ns.L
 if ns.locale == "esES" or ns.locale == "esMX" then
 
 L["OPTIONS_TITLE"] = "Placas de nombre mejoradas"
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "Barra de vida"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "Color de la barra de vida"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "Texto de la barra de vida"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Colorear las placas según la clase"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Colorear las placas enemigas según la clase"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Colorear las placas de los chamanes según la clase"

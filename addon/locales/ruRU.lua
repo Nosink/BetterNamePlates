@@ -5,7 +5,8 @@ local L = ns.L
 if ns.locale == "ruRU" then
 
 L["OPTIONS_TITLE"] = "Улучшенные полоски здоровья"
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "Полоса здоровья"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "Цвет полосы здоровья"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "Текст полосы здоровья"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Окрашивать полоски по классу"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Окрашивать полоски противников по классу"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Окрашивать полоски шаманов по классу"

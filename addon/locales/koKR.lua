@@ -4,7 +4,8 @@ local L = ns.L
 if ns.locale == "koKR" then
 
 L["OPTIONS_TITLE"] = "더 나은 이름표"
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "생명력 바"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "생명력 바 색상"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "생명력 바 텍스트"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "직업에 따라 이름표 색상 변경"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "직업에 따라 적 이름표 색상 변경"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "직업에 따라 주술사 이름표 색상 변경"

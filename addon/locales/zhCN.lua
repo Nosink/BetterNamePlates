@@ -4,7 +4,8 @@ local L = ns.L
 if ns.locale == "zhCN" then
 
 L["OPTIONS_TITLE"] = "更好的姓名板"
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "生命条"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "生命条颜色"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "生命条文本"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "根据职业为姓名板着色"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "根据职业为敌方姓名板着色"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "根据职业为萨满姓名板着色"

@@ -5,7 +5,8 @@ if ns.locale == "deDE" then
 
 L["OPTIONS_TITLE"] = "Bessere Namensplaketten"
 
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "Lebensbalken"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "Lebensbalkenfarbe"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "Lebensbalkentext"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Namensplaketten nach Klasse einfärben"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Feindliche Namensplaketten nach Klasse einfärben"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Schamanen-Namensplaketten nach Klasse einfärben"

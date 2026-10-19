@@ -4,7 +4,8 @@ local L = ns.L
 if ns.locale == "ptBR" then
 
 L["OPTIONS_TITLE"] = "Placas de identificação melhores"
-L["OPTIONS_HEALTH_LABEL_TITLE"] = "Barra de vida"
+L["OPTIONS_HEALTH_COLOR_LABEL_TITLE"] = "Cor da barra de vida"
+L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"] = "Texto da barra de vida"
 L["OPTIONS_COLORED_NAMEPLATES_CB"] = "Colorir placas de identificação por classe"
 L["OPTIONS_COLORED_ENEMY_NAMEPLATES_CB"] = "Colorir placas de identificação inimigas por classe"
 L["OPTIONS_SHAMAN_COLORED_NAMEPLATES_CB"] = "Colorir placas de identificação de xamãs por classe"
