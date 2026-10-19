@@ -92,7 +92,7 @@ local function onUpdateCastBar(_, nameplate, name, text)
 end
 
 local function onClearCastBar(_, nameplate)
-    --onUpdateCastBar(_, nameplate, "", "")
+    onUpdateCastBar(_, nameplate, "", "")
 end
 
 local function onUpdateCastBarSize(_, nameplate)
