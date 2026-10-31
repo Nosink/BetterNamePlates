@@ -8,33 +8,22 @@ local function createLabel(section, text, params)
         ns.builder.fontString(nil, "ARTWORK", "GameFontNormal")
     local offset = params and params.offset or
         ns.builder.offset(0, -10)
-    local point = params and params.textPoint or
+    local point = params and params.controlPoint or
         ns.builder.point("TOPLEFT", section.anchor, "BOTTOMLEFT", offset.x, offset.y)
 
     label = section.optionsPanel:CreateFontString(fontString.name, fontString.layer, fontString.template)
     label:SetPoint(point.point, point.relativeTo, point.relativePoint, point.x, point.y)
 end
 
-local function setText(text, params)
-    local color = params and params.color or
+local function setLabelText(text, params)
+    local color = params and params.textColor or
         ns.builder.color(1, 1, 1, 1)
-    local justifyH = params and params.justify and params.justify.h or
-        "LEFT"
-    local justifyV = params and params.justify and params.justify.v or
-        "TOP"
+    local size = params and params.size or
+        12
 
-    local filename, fontHeight, flags = label:GetFont()
-    filename = params and params.font or
-        filename
-    fontHeight = params and params.fontHeight or
-        fontHeight
-    flags = params and params.flags or
-        flags
-
-    label:SetFont(tostring(filename), fontHeight, flags)
+    local file, _, flags = label:GetFont()
+    label:SetFont(tostring(file), size, flags)
     label:SetTextColor(color.r, color.g, color.b, color.a)
-    label:SetJustifyH(justifyH)
-    label:SetJustifyV(justifyV)
     label:SetText(text)
 end
 
@@ -51,14 +40,9 @@ local function setSize(params)
         45
     local height = params and params.height or
         22
-    local justifyH = params and params.justify and params.justify.h or
-        "CENTER"
-    local justifyV = params and params.justify and params.justify.v or
-        "MIDDLE"
 
     editBox:SetAutoFocus(false)
-    editBox:SetJustifyH(justifyH)
-    editBox:SetJustifyV(justifyV)
+    editBox:SetJustifyH(params and params.justifyH or "CENTER")
     editBox:SetSize(width, height)
 end
 
@@ -98,7 +82,7 @@ end
 
 function ns.builder.CreateEditBox(section, text, key, params)
     createLabel(section, text, params)
-    setText(text, params)
+    setLabelText(text, params)
 
     createEditBox(section, key, params)
     setSize(params)
