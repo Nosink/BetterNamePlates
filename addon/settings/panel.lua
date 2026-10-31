@@ -20,10 +20,10 @@ end
 
 local healthTextSection = builder:CreateSection(L["OPTIONS_HEALTH_TEXT_LABEL_TITLE"])
 healthTextSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealth", {
-    { text = L["HEALTH_FORMAT_NONE"],             value = "0" },
-    { text = L["HEALTH_FORMAT_ONLY_PLAYERS"],     value = "1" },
-    { text = L["HEALTH_FORMAT_ONLY_NPCS"],        value = "2" },
-    { text = L["HEALTH_FORMAT_PLAYERS_AND_NPCS"], value = "3" },
+    { value = "0", text = L["HEALTH_FORMAT_NONE"] },
+    { value = "1", text = L["HEALTH_FORMAT_ONLY_PLAYERS"] },
+    { value = "2", text = L["HEALTH_FORMAT_ONLY_NPCS"] },
+    { value = "3", text = L["HEALTH_FORMAT_PLAYERS_AND_NPCS"] },
 }, { width = 175 })
 
 local anchor = healthTextSection.anchor
