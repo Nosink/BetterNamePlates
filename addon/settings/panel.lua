@@ -29,20 +29,23 @@ healthTextSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealt
 local anchor = healthTextSection.anchor
 for i = 1, L["OPTIONS_HEALTH_FORMAT_DESC_COUNT"] do
     local offset = i == 1 and { x = 25, y = -10 } or { x = 0, y = 0 }
-    local d1 = healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_1"], {
-        width = 120,
+    local d1Settings = builder.settings.text:NewSettings({
+        point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y),
         color = ns.builder.color(0.9, 0.9, 0.9, 1.0),
+        size = 10,
+        width = 120,
         flags = "OUTLINE",
-        textPoint = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y)
     })
-    healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_2"], {
-        textPoint = ns.builder.point("LEFT", d1, "RIGHT"),
+    local d1 = healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_1"], d1Settings)
+    local d2Settings = builder.settings.text:NewSettings({
+        point = ns.builder.point("LEFT", d1, "RIGHT"),
     })
+    healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_2"], d2Settings)
     anchor = d1
 end
 
 healthTextSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat",
-    { width = 450, textPoint = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", -25, -10) })
+    { width = 450, point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", -25, -10) })
 healthTextSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
     { width = 50, isNumeric = true, validator = builder.inRangeValidator(6, 48) })
 

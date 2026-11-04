@@ -19,20 +19,28 @@ function section:AddCheckBox(text, key, params)
     return self:addControl(ns.builder.CreateCheckBox(self, text, key, params))
 end
 
-function section:AddDropDown(text, key, options, params)
-    return self:addControl(ns.builder.CreateDropDown(self, text, key, options, params))
+function section:AddDropDown(text, key, options, settings)
+    local anchor, dropDown = ns.builder.CreateDropDown(self, text, key, options, settings)
+    self:setAnchor(anchor)
+    return self:addControl(dropDown)
 end
 
-function section:AddText(text, params)
-    return self:addControl(ns.builder.CreateText(self, text, params))
+function section:AddText(text, settings)
+    local anchor, label = ns.builder.CreateText(self, text, settings)
+    self:setAnchor(anchor)
+    return self:addControl(anchor)
 end
 
-function section:AddEditBox(text, key, params)
-    return self:addControl(ns.builder.CreateEditBox(self, text, key, params))
+function section:AddEditBox(text, key, settings)
+    local anchor, editBox = ns.builder.CreateEditBox(self, text, key, settings)
+    self:setAnchor(anchor)
+    return self:addControl(editBox)
 end
 
-function section:AddSlider(text, key, params)
-    return self:addControl(ns.builder.CreateSlider(self, text, key, params))
+function section:AddSlider(text, key, settings)
+    local anchor, slider = ns.builder.CreateSlider(self, text, key, settings)
+    self:setAnchor(anchor)
+    return self:addControl(slider)
 end
 
 function section:Fetch()

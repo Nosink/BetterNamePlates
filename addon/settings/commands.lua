@@ -1,6 +1,7 @@
 local name, ns = ...
 
 local L = ns.L
+
 SLASH_BETTERNAMEPLATES1 = "/betternameplates"
 SLASH_BETTERNAMEPLATES2 = "/bnp"
 
