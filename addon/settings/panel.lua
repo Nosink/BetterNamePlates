@@ -51,14 +51,14 @@ healthTextSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat",
             point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", -25, -10)
         }, anchor),
         width = 450
-    }), healthTextSection.anchor)
+    }, healthTextSection.anchor))
 
 healthTextSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
     builder.settings.editBox:NewSettings({
         width = 50,
         isNumeric = true,
         validator = builder.inRangeValidator(6, 48)
-    }), healthTextSection.anchor)
+    }, healthTextSection.anchor))
 
 local castBarSection = builder:CreateSection(L["OPTIONS_CAST_LABEL_TITLE"])
 castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_TIME_CB"], "displayCast")
