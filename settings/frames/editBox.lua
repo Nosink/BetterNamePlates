@@ -1,31 +1,30 @@
 local name, ns = ...
 
-local editBox = {}
-
 local function createEditBox(section, settings)
-    editBox = CreateFrame("EditBox", nil, section.optionsPanel, "InputBoxTemplate")
+    local editBox = CreateFrame("EditBox", nil, section.optionsPanel, "InputBoxTemplate")
     editBox:SetPoint(settings.point.point, settings.point.relativeTo, settings.point.relativePoint, settings.point.x,
         settings.point.y)
+    return editBox
 end
 
-local function setNumeric(settings)
+local function setNumeric(editBox, settings)
     editBox:SetNumeric(settings.isNumeric)
     if (settings.allowDecimals and settings.isNumeric) then
         editBox:SetNumericFullRange(settings.isNumeric)
     end
 end
 
-local function setSize(settings)
+local function setSize(editBox, settings)
     editBox:SetAutoFocus(false)
     editBox:SetJustifyH(settings.justify.h)
     editBox:SetSize(settings.width, settings.height)
 end
 
-local function setValidator(settings)
+local function setValidator(editBox, settings)
     editBox.validator = settings.validator
 end
 
-local function setEvents(key)
+local function setEvents(editBox, key)
     ns.bus:HookScript(editBox, "OnShow", function(self)
         self:SetCursorPosition(0)
     end)
@@ -45,7 +44,7 @@ local function setEvents(key)
     end)
 end
 
-local function setFetch(key)
+local function setFetch(editBox, key)
     editBox.Fetch = function(self)
         local value = ns.db and ns.db[key]
         self:SetText(tostring(value))
@@ -53,16 +52,15 @@ local function setFetch(key)
 end
 
 function ns.builder.CreateEditBox(section, text, key, settings)
-    --
     local _, label = ns.builder.CreateText(section, text, settings.textSettings)
     settings:SetLabel(label)
 
-    createEditBox(section, settings)
-    setNumeric(settings)
-    setSize(settings)
-    setValidator(settings)
-    setEvents(key)
-    setFetch(key)
+    local editBox = createEditBox(section, settings)
+    setNumeric(editBox, settings)
+    setSize(editBox, settings)
+    setValidator(editBox, settings)
+    setEvents(editBox, key)
+    setFetch(editBox, key)
 
     return label, editBox
 end
