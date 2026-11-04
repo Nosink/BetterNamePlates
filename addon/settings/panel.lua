@@ -29,19 +29,19 @@ healthTextSection:AddDropDown(L["OPTIONS_HEALTH_LABEL_FORMAT_DD"], "displayHealt
 local anchor = healthTextSection.anchor
 for i = 1, L["OPTIONS_HEALTH_FORMAT_DESC_COUNT"] do
     local offset = i == 1 and { x = 25, y = -10 } or { x = 0, y = 0 }
-    local d1Settings = builder.settings.text:NewSettings({
-        point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y),
-        color = ns.builder.color(0.9, 0.9, 0.9, 1.0),
-        size = 10,
-        width = 120,
-        flags = "OUTLINE",
-    })
-    local d1 = healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_1"], d1Settings)
-    local d2Settings = builder.settings.text:NewSettings({
-        point = ns.builder.point("LEFT", d1, "RIGHT"),
-    })
-    healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_2"], d2Settings)
-    anchor = d1
+    local textKey = healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_1"],
+        builder.settings.text:NewSettings({
+            point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y),
+            color = ns.builder.color(0.9, 0.9, 0.9, 1.0),
+            size = 10,
+            width = 120,
+            flags = "OUTLINE",
+        }))
+    healthTextSection:AddText(L["OPTIONS_HEALTH_FORMAT_DESC" .. i .. "_2"],
+        builder.settings.text:NewSettings({
+            point = ns.builder.point("LEFT", textKey, "RIGHT"),
+        }))
+    anchor = textKey
 end
 
 
