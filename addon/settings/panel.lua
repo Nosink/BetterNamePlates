@@ -44,10 +44,21 @@ for i = 1, L["OPTIONS_HEALTH_FORMAT_DESC_COUNT"] do
     anchor = d1
 end
 
+
 healthTextSection:AddEditBox(L["OPTIONS_HEALTH_FORMAT_EB"], "healthFormat",
-    { width = 450, point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", -25, -10) })
+    builder.settings.editBox:NewSettings({
+        textSettings = builder.settings.text:NewSettings({
+            point = ns.builder.point("TOPLEFT", anchor, "BOTTOMLEFT", -25, -10)
+        }, anchor),
+        width = 450
+    }), healthTextSection.anchor)
+
 healthTextSection:AddEditBox(L["OPTIONS_HEALTH_LABEL_FONT_SIZE_EB"], "fontSize",
-    { width = 50, isNumeric = true, validator = builder.inRangeValidator(6, 48) })
+    builder.settings.editBox:NewSettings({
+        width = 50,
+        isNumeric = true,
+        validator = builder.inRangeValidator(6, 48)
+    }), healthTextSection.anchor)
 
 local castBarSection = builder:CreateSection(L["OPTIONS_CAST_LABEL_TITLE"])
 castBarSection:AddCheckBox(L["OPTIONS_DISPLAY_CAST_TIME_CB"], "displayCast")

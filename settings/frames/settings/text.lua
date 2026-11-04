@@ -10,6 +10,7 @@ function settings:NewSettings(settings, anchor)
 
     local offset = settings.offset or builder.offset()
     local point = builder.point("TOPLEFT", anchor, "BOTTOMLEFT", offset.x, offset.y)
+
     return setmetatable({
         fontString = settings.fontString or builder.fontString(),
         offset = offset,

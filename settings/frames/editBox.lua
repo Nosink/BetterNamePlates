@@ -1,40 +1,28 @@
 local name, ns = ...
 
-local label = {}
 local editBox = {}
 
-local function createEditBox(section, key, params)
-    local point = params and params.controlPoint or
-        ns.builder.point("LEFT", label, "RIGHT", 10, 0)
-    local isNumeric = params and params.isNumeric or
-        false
-    local allowDecimals = params and params.allowDecimals or
-        false
-
+local function createEditBox(section, settings)
     editBox = CreateFrame("EditBox", nil, section.optionsPanel, "InputBoxTemplate")
-    editBox:SetPoint(point.point, point.relativeTo, point.relativePoint, point.x, point.y)
-    editBox:SetNumeric(isNumeric)
-    if (allowDecimals and isNumeric) then
-        editBox:SetNumericFullRange(isNumeric)
+    editBox:SetPoint(settings.point.point, settings.point.relativeTo, settings.point.relativePoint, settings.point.x,
+        settings.point.y)
+end
+
+local function setNumeric(settings)
+    editBox:SetNumeric(settings.isNumeric)
+    if (settings.allowDecimals and settings.isNumeric) then
+        editBox:SetNumericFullRange(settings.isNumeric)
     end
 end
 
-local function setSize(params)
-    local width = params and params.width or
-        45
-    local height = params and params.height or
-        22
-
+local function setSize(settings)
     editBox:SetAutoFocus(false)
-    editBox:SetJustifyH(params and params.justifyH or "CENTER")
-    editBox:SetSize(width, height)
+    editBox:SetJustifyH(settings.justify.h)
+    editBox:SetSize(settings.width, settings.height)
 end
 
-local function setValidator(params)
-    local validator = params and params.validator or
-        ns.builder.noValidator()
-
-    editBox.validator = validator
+local function setValidator(settings)
+    editBox.validator = settings.validator
 end
 
 local function setEvents(key)
@@ -64,18 +52,15 @@ local function setFetch(key)
     end
 end
 
-function ns.builder.CreateEditBox(section, text, key, params)
+function ns.builder.CreateEditBox(section, text, key, settings)
     --
-    local textSettings = ns.builder.settings.text:NewSettings({
-        offset = { x = 0, y = -10 }, point = params.point
-    }, section.anchor)
+    local _, label = ns.builder.CreateText(section, text, settings.textSettings)
+    settings:SetLabel(label)
 
-    local _, frame = ns.builder.CreateText(section, text, textSettings)
-    label = frame
-
-    createEditBox(section, key, params)
-    setSize(params)
-    setValidator(params)
+    createEditBox(section, settings)
+    setNumeric(settings)
+    setSize(settings)
+    setValidator(settings)
     setEvents(key)
     setFetch(key)
 

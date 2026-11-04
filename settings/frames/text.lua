@@ -10,7 +10,6 @@ local function createFontString(section, settings)
 end
 
 local function setWidth(settings)
-    print(settings.forceWidth)
     if not settings.forceWidth then return end
 
     label:SetWidth(settings.width)
